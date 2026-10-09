@@ -24,7 +24,6 @@ function showToastMsg(msg) {
     }
 }
 
-// 1. Lưu bộ trang phục
 function saveLook() {
     if (typeof getCurrentLook !== 'function') return;
     const look = getCurrentLook();
@@ -56,7 +55,6 @@ function saveLook() {
     showToastMsg('Đã lưu vào Lookbook!');
 }
 
-// 2. Mở và render Lookbook
 function openLookbook() {
     const modal = document.getElementById('lookbook-modal');
     const container = document.getElementById('lookbook-content');
@@ -107,7 +105,6 @@ function openLookbook() {
     modal.classList.add('active');
 }
 
-// 3. Xoá bộ phối
 function deleteLook(id) {
     let looks = getStoredLooks();
     looks = looks.filter(item => item.id !== id);
@@ -115,7 +112,6 @@ function deleteLook(id) {
     openLookbook();
 }
 
-// 4. So sánh đúng 2 bộ
 function compareLooks() {
     const checked = Array.from(document.querySelectorAll('.compare-checkbox:checked')).map(cb => cb.value);
     if (checked.length !== 2) {
@@ -160,7 +156,6 @@ function compareLooks() {
     modal.classList.add('active');
 }
 
-// 5. Chia sẻ
 function shareLook(id) {
     const item = getStoredLooks().find(l => l.id === id);
     if (!item) return;
@@ -174,7 +169,6 @@ function shareLook(id) {
     }
 }
 
-// 6. Vẽ Canvas và tải ảnh
 function downloadLookCard(id) {
     const item = getStoredLooks().find(l => l.id === id);
     if (!item) return;
@@ -185,16 +179,13 @@ function downloadLookCard(id) {
     canvas.height = 800;
     const ctx = canvas.getContext('2d');
 
-    // Nền be
     ctx.fillStyle = '#FDF4EC';
     ctx.fillRect(0, 0, 600, 800);
 
-    // Khung viền trang trí
     ctx.strokeStyle = '#C48C71';
     ctx.lineWidth = 4;
     ctx.strokeRect(24, 24, 552, 752);
 
-    // Tiêu đề
     ctx.fillStyle = '#3B2A22';
     ctx.font = 'bold 32px "Plus Jakarta Sans", sans-serif';
     ctx.textAlign = 'center';
@@ -204,7 +195,6 @@ function downloadLookCard(id) {
     ctx.fillStyle = '#8E7D73';
     ctx.fillText('Người phối: ' + (user ? user.name : 'Người Yêu Cổ Phục'), 300, 125);
 
-    // Thông tin chính
     ctx.font = 'bold 24px "Plus Jakarta Sans", sans-serif';
     ctx.fillStyle = '#3B2A22';
     ctx.fillText(item.outfitName, 300, 200);
@@ -213,7 +203,6 @@ function downloadLookCard(id) {
     ctx.fillStyle = '#C48C71';
     ctx.fillText(item.eventName + ' • ' + item.regionName, 300, 235);
 
-    // Khối màu
     ctx.fillStyle = item.colors[0] || '#C48C71';
     ctx.fillRect(190, 280, 100, 100);
     ctx.fillStyle = item.colors[1] || item.colors[0] || '#EFEBD9';
@@ -224,7 +213,6 @@ function downloadLookCard(id) {
     ctx.strokeRect(190, 280, 100, 100);
     ctx.strokeRect(310, 280, 100, 100);
 
-    // Chi tiết phụ kiện & điểm
     ctx.textAlign = 'center';
     ctx.font = '16px "Plus Jakarta Sans", sans-serif';
     ctx.fillStyle = '#3B2A22';
@@ -237,7 +225,6 @@ function downloadLookCard(id) {
     ctx.fillStyle = '#C48C71';
     ctx.fillText(`Điểm hài hoà: ${item.score}/100`, 300, 560);
 
-    // Chân trang
     ctx.font = '14px "Plus Jakarta Sans", sans-serif';
     ctx.fillStyle = '#8E7D73';
     ctx.fillText('Việt phục Remix — Di sản Cổ phục Việt', 300, 720);
@@ -248,7 +235,6 @@ function downloadLookCard(id) {
     a.click();
 }
 
-// 7. Quản lý Modal & Khởi tạo
 function closeStudioModal(id) {
     const modal = document.getElementById(id);
     if (modal) modal.classList.remove('active');

@@ -1,6 +1,5 @@
 // ================= MODULE AUTHENTICATION (auth.js) =================
 
-// 1. Tiện ích mã hóa (Web Crypto API: PBKDF2/SHA-256 + Salt)
 async function generateSalt() {
     const array = new Uint8Array(16);
     crypto.getRandomValues(array);
@@ -15,7 +14,6 @@ async function hashPassword(password, salt) {
     return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-// 2. Quản lý Storage & Session
 function getUsers() {
     return JSON.parse(localStorage.getItem('vr_users')) || {};
 }
@@ -54,7 +52,6 @@ function updateUserDisplay() {
     }
 }
 
-// 3. Hiển thị & Chuyển đổi màn hình xác thực
 function showAuthScreen(type) {
     clearAuthErrors();
     if (type === 'register') {
@@ -75,11 +72,10 @@ function showAuthScreen(type) {
 function clearAuthErrors() {
     const loginErr = document.getElementById('login-error');
     const regErr = document.getElementById('register-error');
-    if (loginErr) loginErr.innerText = '';
-    if (regErr) regErr.innerText = '';
+    if (loginErr) { loginErr.innerText = ''; loginErr.style.display = 'none'; }
+    if (regErr) { regErr.innerText = ''; regErr.style.display = 'none'; }
 }
 
-// 4. Xử lý Đăng ký
 async function handleRegister(event) {
     event.preventDefault();
     const nameInput = document.getElementById('reg-name');
@@ -88,7 +84,7 @@ async function handleRegister(event) {
     const confirmInput = document.getElementById('reg-confirm');
     const errorEl = document.getElementById('register-error');
 
-    if (errorEl) errorEl.innerText = '';
+    clearAuthErrors();
 
     const name = nameInput ? nameInput.value.trim() : '';
     const username = usernameInput ? usernameInput.value.trim().toLowerCase() : '';
@@ -96,29 +92,29 @@ async function handleRegister(event) {
     const confirm = confirmInput ? confirmInput.value : '';
 
     if (!name) {
-        if (errorEl) errorEl.innerText = 'Vui lòng nhập họ và tên của bạn.';
+        if (errorEl) { errorEl.innerText = 'Vui lòng nhập họ và tên của bạn.'; errorEl.style.display = 'block'; }
         return;
     }
 
     const usernameRegex = /^[a-z0-9_]{3,20}$/;
     if (!usernameRegex.test(username)) {
-        if (errorEl) errorEl.innerText = 'Tên đăng nhập phải dài 3–20 ký tự (chỉ gồm a-z, 0-9 và dấu gạch dưới).';
+        if (errorEl) { errorEl.innerText = 'Tên đăng nhập phải dài 3–20 ký tự (chỉ gồm a-z, 0-9 và _).'; errorEl.style.display = 'block'; }
         return;
     }
 
     if (password.length < 6) {
-        if (errorEl) errorEl.innerText = 'Mật khẩu phải có độ dài tối thiểu 6 ký tự.';
+        if (errorEl) { errorEl.innerText = 'Mật khẩu phải có độ dài tối thiểu 6 ký tự.'; errorEl.style.display = 'block'; }
         return;
     }
 
     if (password !== confirm) {
-        if (errorEl) errorEl.innerText = 'Mật khẩu xác nhận không trùng khớp.';
+        if (errorEl) { errorEl.innerText = 'Mật khẩu xác nhận không trùng khớp.'; errorEl.style.display = 'block'; }
         return;
     }
 
     const users = getUsers();
     if (users[username]) {
-        if (errorEl) errorEl.innerText = 'Tên đăng nhập này đã tồn tại trên hệ thống.';
+        if (errorEl) { errorEl.innerText = 'Tên đăng nhập này đã tồn tại trên hệ thống.'; errorEl.style.display = 'block'; }
         return;
     }
 
@@ -133,31 +129,27 @@ async function handleRegister(event) {
     };
     saveUsers(users);
 
-    // Tự động đăng nhập
     setSession(username);
 
-    // Reset form
     const regForm = document.getElementById('register-form');
     if (regForm) regForm.reset();
 
-    // Điều hướng vào màn hình chính
     window.navigateTo('collections-screen');
 }
 
-// 5. Xử lý Đăng nhập
 async function handleLogin(event) {
     event.preventDefault();
     const usernameInput = document.getElementById('login-username');
     const passwordInput = document.getElementById('login-password');
     const errorEl = document.getElementById('login-error');
 
-    if (errorEl) errorEl.innerText = '';
+    clearAuthErrors();
 
     const username = usernameInput ? usernameInput.value.trim().toLowerCase() : '';
     const password = passwordInput ? passwordInput.value : '';
 
     if (!username || !password) {
-        if (errorEl) errorEl.innerText = 'Vui lòng điền đầy đủ tên đăng nhập và mật khẩu.';
+        if (errorEl) { errorEl.innerText = 'Vui lòng điền đầy đủ tên đăng nhập và mật khẩu.'; errorEl.style.display = 'block'; }
         return;
     }
 
@@ -165,13 +157,13 @@ async function handleLogin(event) {
     const user = users[username];
 
     if (!user) {
-        if (errorEl) errorEl.innerText = 'Sai tên đăng nhập hoặc mật khẩu.';
+        if (errorEl) { errorEl.innerText = 'Sai tên đăng nhập hoặc mật khẩu.'; errorEl.style.display = 'block'; }
         return;
     }
 
     const inputHash = await hashPassword(password, user.salt);
     if (inputHash !== user.hash) {
-        if (errorEl) errorEl.innerText = 'Sai tên đăng nhập hoặc mật khẩu.';
+        if (errorEl) { errorEl.innerText = 'Sai tên đăng nhập hoặc mật khẩu.'; errorEl.style.display = 'block'; }
         return;
     }
 
@@ -183,7 +175,6 @@ async function handleLogin(event) {
     window.navigateTo('collections-screen');
 }
 
-// 6. Đăng xuất
 function logout() {
     clearSession();
     const loginForm = document.getElementById('login-form');
@@ -194,14 +185,12 @@ function logout() {
     window.navigateTo('login-screen');
 }
 
-// 7. Bảo vệ Router / Chặn truy cập trái phép
 (function protectNavigation() {
     const originalNavigateTo = window.navigateTo;
     window.navigateTo = function(screenId) {
         const user = getCurrentUser();
         const authScreens = ['login-screen', 'register-screen'];
 
-        // Nếu chưa đăng nhập mà truy cập màn hình ngoài login/register -> buộc về login
         if (!user && !authScreens.includes(screenId)) {
             if (typeof originalNavigateTo === 'function') {
                 originalNavigateTo('login-screen');
@@ -219,20 +208,13 @@ function logout() {
     };
 })();
 
-// 8. Khởi tạo & Gắn sự kiện khi DOM sẵn sàng
 document.addEventListener('DOMContentLoaded', () => {
-    // Gắn sự kiện form submit
     const loginForm = document.getElementById('login-form');
-    if (loginForm) {
-        loginForm.addEventListener('submit', handleLogin);
-    }
+    if (loginForm) loginForm.addEventListener('submit', handleLogin);
 
     const registerForm = document.getElementById('register-form');
-    if (registerForm) {
-        registerForm.addEventListener('submit', handleRegister);
-    }
+    if (registerForm) registerForm.addEventListener('submit', handleRegister);
 
-    // Nút đăng xuất
     const logoutBtn = document.getElementById('logout-btn');
     if (logoutBtn) {
         logoutBtn.addEventListener('click', (e) => {
@@ -241,7 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Kiểm tra phiên đăng nhập hiện tại
     const user = getCurrentUser();
     if (user) {
         updateUserDisplay();

@@ -1,6 +1,5 @@
 // ================= DỮ LIỆU PHÒNG PHỐI ĐỒ (studio-data.js) =================
 
-// 1. Danh mục các loại cổ phục Việt Nam
 const STUDIO_OUTFITS = [
     {
         id: 'nguthan',
@@ -52,7 +51,6 @@ const STUDIO_OUTFITS = [
     }
 ];
 
-// 2. Danh mục sự kiện đời sống và nghi lễ
 const STUDIO_EVENTS = [
     {
         id: 'tet',
@@ -136,7 +134,6 @@ const STUDIO_EVENTS = [
     }
 ];
 
-// 3. Phân vùng văn hoá vùng miền
 const STUDIO_REGIONS = [
     {
         id: 'bac_bo',
@@ -158,7 +155,6 @@ const STUDIO_REGIONS = [
     }
 ];
 
-// 4. Phong cách định hình
 const STUDIO_STYLES = [
     {
         id: 'chuan_muc',
@@ -187,7 +183,6 @@ const STUDIO_STYLES = [
     }
 ];
 
-// 5. Điều kiện thời tiết & chất liệu
 const STUDIO_WEATHER = [
     {
         id: 'nang_nong',
@@ -219,7 +214,6 @@ const STUDIO_WEATHER = [
     }
 ];
 
-// 6. Bảng màu cổ truyền Việt Nam
 const STUDIO_COLORS = [
     { id: 'do_son', name: 'Đỏ son', hex: '#B22222', hue: 0, meaning: 'Tượng trưng cho sự thịnh vượng, quyền uy và may mắn ngập tràn.' },
     { id: 'vang_nghe', name: 'Vàng nghệ', hex: '#E0A96D', hue: 35, meaning: 'Sắc thái dân dã, ấm no, gần gũi với hồn quê và mùa màng bội thu.' },
@@ -235,7 +229,6 @@ const STUDIO_COLORS = [
     { id: 'be_lua', name: 'Be lụa', hex: '#D2B48C', hue: 34, meaning: 'Sắc màu trung tính sang trọng, tôn vinh độ bóng mượt tự nhiên của tơ tằm.' }
 ];
 
-// 7. Phụ kiện đi kèm
 const STUDIO_ACCESSORIES = [
     { name: 'Khăn vấn', outfits: ['nguthan', 'cachtan', 'aotac'], note: 'Phổ biến cho nữ giới tạo nét thanh thoát đoan trang.' },
     { name: 'Khăn vành', outfits: ['nhatbinh'], note: 'Phụ kiện cung đình Huế chỉ đội kèm áo Nhật Bình.' },
@@ -254,7 +247,6 @@ const STUDIO_ACCESSORIES = [
     { name: 'Thắt lưng bao', outfits: ['tuthan'], note: 'Dải lụa mềm buộc ngang eo buông rủ hai đầu tà áo.' }
 ];
 
-// 8. Bộ quy tắc ứng xử và cảnh báo sai lệch văn hoá
 const CULTURE_RULES = [
     {
         id: 'rule_nhatbinh_dao_pho',
@@ -290,7 +282,7 @@ const CULTURE_RULES = [
         id: 'rule_giao_linh_vat_ao',
         level: 'info',
         when: { outfits: ['giaolinh'] },
-        message: 'Lưu ý khi mặc áo Giao Lĩnh cổ truyền Việt Nam: vạt trái bắt buộc đè lên vạt phải (tả nhẫm/hữu nhẫm tùy triều đại nhưng luôn tuân theo quy chuẩn Việt, tránh nhầm lẫn với y phục nước khác).'
+        message: 'Áo Giao Lĩnh cổ truyền Việt Nam mặc vạt trái đè vạt phải. Điểm phân biệt nằm ở dáng thụng đặc trưng, nếp cổ viền, khăn đội, phụ kiện và bối cảnh sử dụng thuần Việt.'
     },
     {
         id: 'rule_nham_lan_co_phuc',
@@ -314,8 +306,6 @@ const CULTURE_RULES = [
 
 // Chuẩn hoá màu của STUDIO_EVENTS theo danh mục STUDIO_COLORS sẵn có
 (function normalizeEventColors() {
-    if (typeof STUDIO_EVENTS === 'undefined' || typeof STUDIO_COLORS === 'undefined') return;
-
     function hexToRgb(hex) {
         let clean = hex.replace('#', '');
         if (clean.length === 3) clean = clean.split('').map(c => c + c).join('');

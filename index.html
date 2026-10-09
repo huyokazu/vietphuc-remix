@@ -140,7 +140,7 @@
                 <div class="grid-products" id="product-list"></div>
             </div>
 
-            <!-- Bottom Navigation (5 mục: Trang chủ, Lịch sử, Yêu thích, Giỏ đồ, Phối đồ) -->
+            <!-- Bottom Navigation -->
             <div class="bottom-nav">
                 <a href="javascript:void(0)" class="nav-item active anim-btn" onclick="navigateTo('collections-screen')">
                     <span style="font-size: 20px;">🏠</span>
@@ -215,7 +215,7 @@
             </div>
 
             <div class="studio-layout">
-                <!-- Cột trái: Mockup, Phân tích & Công cụ -->
+                <!-- Cột trái: Mockup ảnh thật, Phân tích & Công cụ -->
                 <div class="studio-col-left">
                     <div id="studio-preview" class="studio-preview-box"></div>
                     <div id="studio-harmony" class="studio-card"></div>
@@ -319,22 +319,12 @@
             </div>
         </div>
 
-        <!-- Modal Trợ lý AI -->
+        <!-- Modal Trợ lý AI (ĐÃ XÓA KHUNG NHẬP API KEY) -->
         <div id="ai-modal" class="modal">
             <div class="modal-content" style="max-width: 480px; width: 90%; height: 80vh; display: flex; flex-direction: column; text-align: left; padding: 20px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 8px;">
                     <h3 style="margin: 0; font-size: 16px;">✨ Trợ lý AI Việt phục</h3>
                     <button class="modal-close" data-close="ai-modal" style="position: static; font-size: 20px;">×</button>
-                </div>
-
-                <!-- Cài đặt API Key -->
-                <div class="ai-key-box" style="margin-bottom: 10px; background: var(--bg-color); padding: 8px 12px; border-radius: 8px;">
-                    <div style="display: flex; gap: 6px; margin-bottom: 4px;">
-                        <input type="password" id="ai-key-input" placeholder="Dán Gemini API Key" style="flex: 1; padding: 6px 10px; font-size: 12px; border: 1px solid rgba(0,0,0,0.1); border-radius: 6px; outline: none;">
-                        <button id="ai-key-save" class="pill anim-btn" style="font-size: 11px; padding: 4px 10px; cursor: pointer;">Lưu</button>
-                        <button id="ai-key-clear" class="pill anim-btn" style="font-size: 11px; padding: 4px 10px; cursor: pointer; color: #c0392b;">Xóa</button>
-                    </div>
-                    <span style="font-size: 10px; color: var(--text-muted); display: block;">Key chỉ lưu an toàn trong trình duyệt này.</span>
                 </div>
 
                 <!-- Gợi ý nhanh -->
@@ -360,7 +350,7 @@
 
     </div>
 
-    <!-- ==================== 8. THƯ VIỆN & SCRIPTS (Đúng thứ tự nạp) ==================== -->
+    <!-- Scripts -->
     <script src="script.js"></script>
     <script src="auth.js"></script>
     <script src="studio-data.js"></script>

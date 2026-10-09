@@ -100,7 +100,7 @@ body {
 }
 
 /* ================= AUTH / LOGIN SCREEN ================= */
-#login-screen {
+#login-screen, #register-screen {
     justify-content: center;
     padding: 40px 24px;
     overflow-y: auto;
@@ -122,6 +122,10 @@ body {
     width: 76px;
     height: 76px;
     margin: 0 auto 16px auto;
+    font-size: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .auth-header h1 {
@@ -195,57 +199,21 @@ body {
     width: 100%;
 }
 
-.auth-divider {
-    text-align: center;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.auth-divider::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: rgba(59, 42, 34, 0.1);
-    z-index: 1;
-}
-
-.auth-divider span {
-    background: var(--bg-color);
-    padding: 0 16px;
-    color: var(--text-muted);
+.pill {
+    padding: 6px 14px;
+    border: 1px solid rgba(59, 42, 34, 0.12);
+    border-radius: 20px;
     font-size: 12px;
-    z-index: 2;
-}
-
-.social-login {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.btn-social {
-    width: 100%;
-    padding: 13px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    background: #FFFFFF;
-    border: 1px solid rgba(59, 42, 34, 0.1);
-    border-radius: var(--border-radius-md);
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-dark);
+    color: var(--text-muted);
     cursor: pointer;
+    font-weight: 500;
+    background: #FFFFFF;
 }
 
-.btn-social:hover {
-    background: #FAF6F2;
-    border-color: rgba(59, 42, 34, 0.2);
+.pill.active {
+    background: var(--primary-color);
+    color: #FFFFFF;
+    border-color: var(--primary-color);
 }
 
 /* ================= COLLECTIONS SCREEN ================= */
@@ -367,6 +335,7 @@ body {
     color: var(--text-muted);
     transition: 0.3s;
     flex-shrink: 0;
+    font-size: 20px;
 }
 
 .category.active .cat-icon {
@@ -554,11 +523,6 @@ body {
     box-shadow: 0 4px 14px rgba(59, 42, 34, 0.08);
 }
 
-.fav-btn svg[fill="#e74c3c"] {
-    fill: var(--danger-color);
-    stroke: var(--danger-color);
-}
-
 .detail-image-container {
     height: 48%;
     width: 100%;
@@ -645,23 +609,6 @@ body {
     flex-wrap: wrap;
 }
 
-.pill {
-    padding: 6px 14px;
-    border: 1px solid rgba(59, 42, 34, 0.12);
-    border-radius: 20px;
-    font-size: 12px;
-    color: var(--text-muted);
-    cursor: pointer;
-    font-weight: 500;
-    background: #FFFFFF;
-}
-
-.pill.active {
-    background: var(--primary-color);
-    color: #FFFFFF;
-    border-color: var(--primary-color);
-}
-
 .info-tabs {
     display: flex;
     gap: 14px;
@@ -740,6 +687,7 @@ body {
     align-items: center;
     cursor: pointer;
     flex-shrink: 0;
+    font-size: 20px;
 }
 
 .action-bottom .btn-icon:hover {
@@ -772,7 +720,6 @@ body {
     pointer-events: auto;
 }
 
-/* Modal căn giữa (Mix Result) */
 .modal-content {
     background: #FFFFFF;
     padding: 24px;
@@ -845,7 +792,7 @@ body {
     height: 80%;
 }
 
-/* Modal dạng Bottom Sheet (History, Wishlist, Cart) */
+/* Modal Bottom Sheet */
 .bottom-sheet-modal {
     align-items: flex-end;
 }
@@ -907,7 +854,7 @@ body {
     margin-top: 48px;
 }
 
-/* Thẻ sản phẩm trong danh sách Modal */
+/* List Item Card */
 .list-item {
     display: flex;
     gap: 14px;
@@ -984,8 +931,6 @@ body {
 }
 
 /* ================= RESPONSIVE MEDIA QUERIES ================= */
-
-/* --- TABLET (≥ 768px) --- */
 @media (min-width: 768px) {
     body {
         align-items: stretch;
@@ -1016,7 +961,6 @@ body {
         padding: 32px 36px 110px 36px;
     }
 
-    /* Màn hình Detail: Chia 2 cột (Ảnh bên trái | Thông tin bên phải) */
     #detail-screen {
         flex-direction: row;
         background: var(--bg-color);
@@ -1059,7 +1003,6 @@ body {
         display: none;
     }
 
-    /* Modal co giãn theo màn hình */
     .modal-content {
         width: 90vw;
         max-width: 540px;
@@ -1084,14 +1027,12 @@ body {
     }
 }
 
-/* --- LAPTOP (≥ 1024px) --- */
 @media (min-width: 1024px) {
     .grid-products {
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 22px;
     }
 
-    /* Chuyển bottom-nav lên trên cùng làm top navbar */
     .bottom-nav {
         top: 0;
         bottom: auto;
@@ -1124,7 +1065,6 @@ body {
     }
 }
 
-/* --- PC & MÀN HÌNH LỚN (≥ 1440px) --- */
 @media (min-width: 1440px) {
     .grid-products {
         grid-template-columns: repeat(5, minmax(0, 1fr));

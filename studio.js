@@ -100,41 +100,69 @@ function renderAccessoryOptions() {
     });
 }
 
+// 1. NÂNG CẤP PHÒNG THAY ĐỒ: HIỂN THỊ MOCKUP ẢNH THẬT HOÀN CHỈNH (FULL-LOOK)
 function renderPreview() {
     const container = document.getElementById('studio-preview');
     if (!container) return;
+
+    // Tìm một mẫu ảnh thật hoàn chỉnh từ kho dữ liệu outfits khớp với loại áo đang chọn
+    let matchedItem = null;
+    if (typeof outfits !== 'undefined' && outfits.length > 0) {
+        matchedItem = outfits.find(o => o.categoryId === studioState.outfit);
+        if (!matchedItem && studioState.outfit === 'tuthan') {
+            matchedItem = outfits.find(o => o.categoryId === 'nguthan');
+        }
+    }
+
+    const curOutfitInfo = typeof STUDIO_OUTFITS !== 'undefined' ? STUDIO_OUTFITS.find(o => o.id === studioState.outfit) : null;
+    const outfitDisplayName = curOutfitInfo ? curOutfitInfo.name : 'Trang phục';
     const c1 = studioState.colors[0] || '#C48C71';
     const c2 = studioState.colors[1] || c1;
-    const isTayThung = studioState.outfit === 'aotac';
-    const hasKhanVanh = studioState.accessories.includes('Khăn vành');
-    const isNu = studioState.character === 'nu';
 
-    let extraHead = hasKhanVanh 
-        ? `<ellipse cx="100" cy="58" rx="26" ry="10" fill="${c2}" stroke="#fff" stroke-width="2"/>`
-        : (isNu ? `<circle cx="100" cy="44" r="14" fill="#3B2A22"/>` : `<rect x="88" y="38" width="24" height="12" rx="4" fill="#3B2A22"/>`);
-
-    let sleeves = isTayThung
-        ? `<path d="M 65 85 L 20 115 L 25 170 L 65 130 Z" fill="${c1}"/>
-           <path d="M 135 85 L 180 115 L 175 170 L 135 130 Z" fill="${c1}"/>`
-        : `<path d="M 65 85 L 40 140 L 52 145 L 70 100 Z" fill="${c1}"/>
-           <path d="M 135 85 L 160 140 L 148 145 L 130 100 Z" fill="${c1}"/>`;
-
-    let collar = studioState.outfit === 'nhatbinh'
-        ? `<rect x="84" y="80" width="32" height="45" fill="${c2}" stroke="#fff" stroke-width="1.5"/>`
-        : (studioState.outfit === 'giaolinh'
-            ? `<path d="M 78 80 L 100 110 L 122 80" stroke="${c2}" stroke-width="5" fill="none"/>`
-            : `<rect x="92" y="72" width="16" height="10" rx="2" fill="${c2}"/>`);
+    const accTags = studioState.accessories.length > 0 
+        ? studioState.accessories.map(a => `<span class="pill" style="font-size:11px; padding:3px 8px; background:#fff;">${a}</span>`).join(' ')
+        : '<span style="font-size:11px; color:var(--text-muted);">Chưa chọn phụ kiện</span>';
 
     container.innerHTML = `
-        <svg viewBox="0 0 200 240" style="width:100%; height:100%; max-height:300px;" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="100" cy="225" rx="55" ry="8" fill="rgba(0,0,0,0.08)"/>
-            ${sleeves}
-            <path d="M 70 80 L 130 80 L 148 220 L 52 220 Z" fill="${c1}"/>
-            <circle cx="100" cy="60" r="18" fill="#F4D0B8"/>
-            ${extraHead}
-            ${collar}
-        </svg>
+        <div style="display:flex; flex-direction:column; align-items:center; width:100%;">
+            <div style="position:relative; width:180px; aspect-ratio:3/4; border-radius:var(--border-radius-md); overflow:hidden; box-shadow:0 10px 24px rgba(59,42,34,0.15); background:var(--bg-color); display:flex; justify-content:center; align-items:center;">
+                <div id="studio-real-photo-box" style="width:100%; height:100%;"></div>
+                
+                <!-- Huy hiệu bảng màu đang phối -->
+                <div style="position:absolute; bottom:8px; right:8px; display:flex; gap:4px; background:rgba(255,255,255,0.85); padding:3px 6px; border-radius:12px; backdrop-filter:blur(4px);">
+                    <span style="width:14px; height:14px; border-radius:50%; background:${c1}; border:1px solid #fff; display:inline-block;"></span>
+                    <span style="width:14px; height:14px; border-radius:50%; background:${c2}; border:1px solid #fff; display:inline-block;"></span>
+                </div>
+            </div>
+
+            <div style="margin-top:12px; text-align:center;">
+                <strong style="font-size:14px; color:var(--text-dark);">${outfitDisplayName}</strong>
+                <p style="margin:2px 0 8px 0; font-size:11px; color:var(--text-muted);">${matchedItem ? matchedItem.name : 'Mockup chuẩn truyền thống'}</p>
+                <div style="display:flex; gap:4px; flex-wrap:wrap; justify-content:center;">
+                    ${accTags}
+                </div>
+            </div>
+        </div>
     `;
+
+    const photoBox = document.getElementById('studio-real-photo-box');
+    if (photoBox) {
+        if (matchedItem && matchedItem.img) {
+            const imgEl = document.createElement('img');
+            imgEl.src = matchedItem.img;
+            imgEl.alt = matchedItem.name;
+            imgEl.className = 'real-img';
+            imgEl.style.cssText = 'width:100%; height:100%; object-fit:cover;';
+            imgEl.addEventListener('error', () => {
+                photoBox.innerHTML = matchedItem.svg || (curOutfitInfo ? curOutfitInfo.svg : '');
+            });
+            photoBox.appendChild(imgEl);
+        } else if (matchedItem && matchedItem.svg) {
+            photoBox.innerHTML = matchedItem.svg;
+        } else {
+            photoBox.innerHTML = `<svg viewBox="0 0 200 240" style="width:100%; height:100%;" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="240" fill="${c1}"/><text x="50%" y="50%" fill="#fff" dominant-baseline="middle" text-anchor="middle" font-size="16">${outfitDisplayName}</text></svg>`;
+        }
+    }
 }
 
 function calcHarmony() {
@@ -232,7 +260,7 @@ function renderResultCard() {
         <div style="font-size:13px; line-height:1.5;">
             ${curEvent ? `<div style="margin-bottom:4px;">💡 <strong>Bối cảnh:</strong> ${curEvent.tip}</div>` : ''}
             ${curWeather ? `<div style="margin-bottom:4px;">🌤️ <strong>Thời tiết (${curWeather.name}):</strong> ${curWeather.suggestion} (Vải: ${curWeather.fabrics}).</div>` : ''}
-            ${curRegion ? `<div>📍 <strong>Vùng miền (${curRegion.name}):</strong>${curRegion.note}</div>` : ''}
+            ${curRegion ? `<div>📍 <strong>Vùng miền (${curRegion.name}):</strong> ${curRegion.note}</div>` : ''}
         </div>
     `;
 }

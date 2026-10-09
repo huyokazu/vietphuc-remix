@@ -1,19 +1,52 @@
-// Dữ liệu loại trang phục
+// ================= DATA & CORE APP LOGIC (script.js) =================
+
 const categoryDetails = {
-    nhatbinh: { origin: 'Năm 1807 vua Gia Long quy định thành trang phục triều đình; là lễ phục của hoàng hậu, công chúa, mệnh phụ triều Nguyễn.', features: 'Cổ áo lớn hình chữ nhật trước ngực, thêu phượng, sen, mây; màu sắc theo phẩm cấp; đi kèm khăn vành.', usage: 'Sử dụng trong các dịp lễ lớn, tế giao, triều hội.', meaning: 'Đại diện cho phẩm hạnh và địa vị cao quý.', svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M 50 40 L 150 40 L 180 180 L 20 180 Z" fill="#B35A42"/><rect x="75" y="40" width="50" height="70" fill="#EBD2B5"/><circle cx="100" cy="75" r="15" fill="#B35A42"/><path d="M 75 40 L 100 65 L 125 40" stroke="#C49378" stroke-width="4" fill="none"/></svg>` },
-    aotac: { origin: 'Biến thể của áo ngũ thân (áo ngũ thân lập lĩnh tay thụng), thịnh hành thời Nguyễn.', features: 'Áo năm thân, cổ đứng, tay rộng thụng.', usage: 'Lễ phục trang trọng trong lễ tế, cưới hỏi, Tết, mừng thọ; ngày nay hợp lễ tốt nghiệp, khai giảng.', meaning: 'Thể hiện sự thành kính, nghiêm cẩn.', svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M 70 40 L 130 40 L 150 180 L 50 180 Z" fill="#C49378"/><path d="M 70 40 L 20 50 L 20 120 L 60 120 Z" fill="#C49378" opacity="0.8"/><path d="M 130 40 L 180 50 L 180 120 L 140 120 Z" fill="#C49378" opacity="0.8"/><path d="M 100 40 L 100 180" stroke="#fff" stroke-width="2" opacity="0.4"/><rect x="85" y="25" width="30" height="15" fill="#3B2A22" rx="2"/></svg>` },
-    nguthan: { origin: 'Trang phục phổ biến nhất thời Nguyễn, tiền thân của áo dài hiện đại ngày nay.', features: 'Cổ đứng, cài khuy vai phải, áo có 5 thân (4 thân ngoài, 1 thân con ẩn trong).', usage: 'Mặc hằng ngày, dịp Tết, lễ hội, tiếp khách, các hoạt động văn hóa.', meaning: 'Bốn thân tượng trưng tứ thân phụ mẫu, thân thứ năm là người mặc; năm khuy là ngũ thường.', svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M 60 40 L 140 40 L 170 180 L 100 180 L 100 60 L 100 180 L 30 180 Z" fill="#D5A992"/><path d="M 100 40 L 100 180" stroke="#fff" stroke-width="2" opacity="0.5"/><circle cx="115" cy="50" r="3" fill="#3B2A22"/><circle cx="120" cy="70" r="3" fill="#3B2A22"/><circle cx="120" cy="90" r="3" fill="#3B2A22"/><rect x="85" y="25" width="30" height="15" fill="#3B2A22" rx="2"/></svg>` },
-    giaolinh: { origin: 'Tồn tại lâu đời trong lịch sử Việt, có từ trước khi áo ngũ thân ra đời.', features: 'Áo cổ chéo, vạt trái đè lên vạt phải.', usage: 'Gắn với sĩ tử, thư sinh, dùng trong lễ vinh quy hoặc lễ nghi truyền thống.', meaning: 'Thể hiện tính học thuật, khiêm nhường.', svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#E6C8B8"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" fill="#3B2A22">Giao Lĩnh</text></svg>` },
-    cachtan: { origin: 'Phát triển từ áo ngũ thân vào thập niên 1930.', features: 'Dáng ôm thanh mảnh, thiết kế tối giản, chất liệu hiện đại đa dạng.', usage: 'Trang phục của học sinh, sinh viên trong lễ khai giảng, tốt nghiệp, Tết.', meaning: 'Giao thoa giữa nét đẹp truyền thống và phong cách hiện đại.', svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#E6C8B8"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" fill="#3B2A22">Cách Tân</text></svg>` }
+    nhatbinh: {
+        origin: 'Năm 1807 vua Gia Long quy định thành trang phục triều đình; là lễ phục của hoàng hậu, công chúa, mệnh phụ triều Nguyễn.',
+        features: 'Cổ áo lớn hình chữ nhật trước ngực, thêu phượng, sen, mây; màu sắc theo phẩm cấp; đi kèm khăn vành.',
+        usage: 'Sử dụng trong các dịp lễ lớn, tế giao, triều hội.',
+        meaning: 'Đại diện cho phẩm hạnh và địa vị cao quý. Lời khuyên chung cho Gen Z: hiểu ý nghĩa để mặc đúng dịp, phối phụ kiện giữ bản sắc nhưng vẫn cá tính.',
+        svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M 50 40 L 150 40 L 180 180 L 20 180 Z" fill="#B35A42"/><rect x="75" y="40" width="50" height="70" fill="#EBD2B5"/><circle cx="100" cy="75" r="15" fill="#B35A42"/><path d="M 75 40 L 100 65 L 125 40" stroke="#C49378" stroke-width="4" fill="none"/></svg>`
+    },
+    aotac: {
+        origin: 'Biến thể của áo ngũ thân (áo ngũ thân lập lĩnh tay thụng), thịnh hành thời Nguyễn.',
+        features: 'Áo năm thân, cổ đứng, tay rộng thụng.',
+        usage: 'Lễ phục trang trọng trong lễ tế, cưới hỏi, Tết, mừng thọ; ngày nay hợp lễ tốt nghiệp, khai giảng.',
+        meaning: 'Thể hiện sự thành kính, nghiêm cẩn. Lời khuyên chung cho Gen Z: hiểu ý nghĩa để mặc đúng dịp, phối phụ kiện giữ bản sắc nhưng vẫn cá tính.',
+        svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M 70 40 L 130 40 L 150 180 L 50 180 Z" fill="#C49378"/><path d="M 70 40 L 20 50 L 20 120 L 60 120 Z" fill="#C49378" opacity="0.8"/><path d="M 130 40 L 180 50 L 180 120 L 140 120 Z" fill="#C49378" opacity="0.8"/><path d="M 100 40 L 100 180" stroke="#fff" stroke-width="2" opacity="0.4"/><rect x="85" y="25" width="30" height="15" fill="#3B2A22" rx="2"/></svg>`
+    },
+    nguthan: {
+        origin: 'Trang phục phổ biến nhất thời Nguyễn, tiền thân của áo dài hiện đại ngày nay.',
+        features: 'Cổ đứng, cài khuy vai phải, áo có 5 thân (4 thân ngoài, 1 thân con ẩn trong).',
+        usage: 'Mặc hằng ngày, dịp Tết, lễ hội, tiếp khách, các hoạt động văn hóa.',
+        meaning: 'Bốn thân tượng trưng tứ thân phụ mẫu, thân thứ năm là người mặc; năm khuy là ngũ thường Nhân – Lễ – Nghĩa – Trí – Tín. Lời khuyên chung cho Gen Z: hiểu ý nghĩa để mặc đúng dịp, phối phụ kiện giữ bản sắc nhưng vẫn cá tính.',
+        svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M 60 40 L 140 40 L 170 180 L 100 180 L 100 60 L 100 180 L 30 180 Z" fill="#D5A992"/><path d="M 100 40 L 100 180" stroke="#fff" stroke-width="2" opacity="0.5"/><circle cx="115" cy="50" r="3" fill="#3B2A22"/><circle cx="120" cy="70" r="3" fill="#3B2A22"/><circle cx="120" cy="90" r="3" fill="#3B2A22"/><rect x="85" y="25" width="30" height="15" fill="#3B2A22" rx="2"/></svg>`
+    },
+    giaolinh: {
+        origin: 'Tồn tại lâu đời trong lịch sử Việt, có từ trước khi áo ngũ thân ra đời.',
+        features: 'Áo cổ chéo, vạt trái đè lên vạt phải.',
+        usage: 'Gắn với sĩ tử, thư sinh, dùng trong lễ vinh quy hoặc lễ nghi truyền thống.',
+        meaning: 'Thể hiện tính học thuật, khiêm nhường. Lời khuyên chung cho Gen Z: hiểu ý nghĩa để mặc đúng dịp, phối phụ kiện giữ bản sắc nhưng vẫn cá tính.',
+        svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#E6C8B8"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" fill="#3B2A22">Giao Lĩnh</text></svg>`
+    },
+    cachtan: {
+        origin: 'Phát triển từ áo ngũ thân vào thập niên 1930 (phong trào Lemur, Lê Phổ).',
+        features: 'Dáng ôm thanh mảnh, thiết kế tối giản, chất liệu hiện đại đa dạng.',
+        usage: 'Trang phục của học sinh, sinh viên trong lễ khai giảng, tốt nghiệp, Tết, dạo phố.',
+        meaning: 'Giao thoa giữa nét đẹp truyền thống và phong cách hiện đại. Lời khuyên chung cho Gen Z: hiểu ý nghĩa để mặc đúng dịp, phối phụ kiện giữ bản sắc nhưng vẫn cá tính.',
+        svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#E6C8B8"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" fill="#3B2A22">Cách Tân</text></svg>`
+    }
 };
+
 const accessoriesPool = ['Khăn vấn', 'Quạt', 'Guốc mộc', 'Túi gấm', 'Khăn xếp', 'Trâm cài', 'Hài thêu', 'Kiềng cổ', 'Nón lá', 'Ngọc bội'];
+
 const rawItems = [
     { id: 1, categoryId: 'nhatbinh', name: 'Hoàng hậu Nam Phương mặc áo Nhật Bình, khăn vành', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Nam_Ph%C6%B0%C6%A1ng_empress_of_Vietnam.jpg/960px-Nam_Ph%C6%B0%C6%A1ng_empress_of_Vietnam.jpg' },
     { id: 2, categoryId: 'nhatbinh', name: 'Áo vua, áo hoàng hậu và áo phi tần thời Nguyễn', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/%C3%81o_vua.jpg/960px-%C3%81o_vua.jpg' },
     { id: 3, categoryId: 'nhatbinh', name: 'Vua Bảo Đại và Hoàng hậu Nam Phương trong lễ phục', img: 'https://upload.wikimedia.org/wikipedia/commons/6/64/B%E1%BA%A3o_%C4%90%E1%BA%A1i_%26_Nam_Ph%C6%B0%C6%A1ng.jpg' },
-    { id: 4, categoryId: 'nhatbinh', name: 'Phu nhân quan lại (bà Võ Chuẩn) trong lễ phục mệnh phụ', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/PF0016699_Epouse_d%27un_mandarin_annamite.jpg/960px-PF0016699_Epouse_d%27un_mandarin_annamite.jpg' },
+    { id: 4, categoryId: 'nhatbinh', name: 'Phu nhân quan lại (bà Võ Chuẩn) trong lễ phục', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/PF0016699_Epouse_d%27un_mandarin_annamite.jpg/960px-PF0016699_Epouse_d%27un_mandarin_annamite.jpg' },
     { id: 5, categoryId: 'aotac', name: 'Triều phục quan lại triều Nguyễn', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Quanphuc.JPG/960px-Quanphuc.JPG' },
-    { id: 6, categoryId: 'aotac', name: 'Áo tấc may bằng lụa Mã Châu (Quảng Nam)', img: 'https://upload.wikimedia.org/wikipedia/commons/6/62/Rio_m%C3%A3_ch%C3%A2u_%C3%A1o_t%E1%BA%A5c.jpg' },
+    { id: 6, categoryId: 'aotac', name: 'Áo tấc may bằng lụa Mã Châu', img: 'https://upload.wikimedia.org/wikipedia/commons/6/62/Rio_m%C3%A3_ch%C3%A2u_%C3%A1o_t%E1%BA%A5c.jpg' },
     { id: 7, categoryId: 'aotac', name: 'Hoàng thân Nguyễn Phúc Bửu Thạch mặc lễ phục', img: 'https://upload.wikimedia.org/wikipedia/commons/5/59/%C3%81o_t%E1%BA%A5c_b%C3%A1t_b%E1%BA%A3o_m%C3%A3ng_b%C3%A0o.jpeg' },
     { id: 8, categoryId: 'aotac', name: 'Thượng thư Tôn Thất Đàn trong đại lễ phục', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Mandarins_annamites_en_costume_de_c%C3%A9r%C3%A9monie.jpg/960px-Mandarins_annamites_en_costume_de_c%C3%A9r%C3%A9monie.jpg' },
     { id: 9, categoryId: 'aotac', name: 'Quan lại triều đình Huế', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Hu%C3%A9._Les_mandarins_de_la_Cour_d%27Annam.jpg/960px-Hu%C3%A9._Les_mandarins_de_la_Cour_d%27Annam.jpg' },
@@ -55,7 +88,6 @@ const outfits = rawItems.map(item => {
     return { ...item, id: 'item_' + item.id, subtitle: subtitle, origin: details.origin, features: details.features, usage: details.usage, meaning: details.meaning, svg: details.svg, accessories: itemAcc };
 });
 
-// Trạng thái và Data LocalStorage
 let currentItem = null;
 let selectedAccessories = [];
 let currentTab = 'origin';
@@ -75,29 +107,31 @@ function saveState() {
 
 function updateCartBadge() {
     const badge = document.getElementById('cart-badge');
-    if (cart.length > 0) {
-        badge.style.display = 'flex';
-        badge.innerText = cart.length;
-    } else {
-        badge.style.display = 'none';
+    if (badge) {
+        if (cart.length > 0) {
+            badge.style.display = 'flex';
+            badge.innerText = cart.length;
+        } else {
+            badge.style.display = 'none';
+        }
     }
 }
 
-// 1. Navigation
 function navigateTo(screenId) {
     document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
-    document.getElementById(screenId).classList.add('active');
+    const target = document.getElementById(screenId);
+    if (target) target.classList.add('active');
     
-    // Update bottom nav active state
     if (screenId === 'collections-screen') {
         document.querySelectorAll('.bottom-nav .nav-item').forEach(el => el.classList.remove('active'));
-        document.querySelector('.bottom-nav .nav-item:nth-child(1)').classList.add('active');
+        const homeNav = document.querySelector('.bottom-nav .nav-item:nth-child(1)');
+        if (homeNav) homeNav.classList.add('active');
     }
 }
 
-// 2. Render danh sách sản phẩm
 function renderCollections() {
     const list = document.getElementById('product-list');
+    if (!list) return;
     list.innerHTML = '';
     
     const filteredOutfits = outfits.filter(item => {
@@ -150,7 +184,8 @@ function renderCollections() {
 function setCategory(catId) {
     currentFilterCategory = catId;
     document.querySelectorAll('.category').forEach(el => el.classList.remove('active'));
-    document.getElementById('cat-' + catId).classList.add('active');
+    const targetCat = document.getElementById('cat-' + catId);
+    if (targetCat) targetCat.classList.add('active');
     renderCollections();
 }
 
@@ -159,7 +194,6 @@ function handleSearch(query) {
     renderCollections();
 }
 
-// Wishlist Logic for Cards
 function toggleWishlistCard(event, id) {
     event.stopPropagation();
     if (wishlist.includes(id)) {
@@ -171,64 +205,69 @@ function toggleWishlistCard(event, id) {
     renderCollections();
 }
 
-// 5. Mở màn hình Detail
 function openDetail(id) {
     currentItem = outfits.find(o => o.id === id);
+    if (!currentItem) return;
+
     selectedAccessories = [];
     currentTab = 'origin'; 
     
-    // Lưu vào lịch sử (đưa lên đầu, xóa trùng)
     viewHistory = viewHistory.filter(itemId => itemId !== id);
     viewHistory.unshift(id);
-    if(viewHistory.length > 20) viewHistory.pop(); // Giới hạn 20
+    if (viewHistory.length > 20) viewHistory.pop();
     saveState();
     
-    // Set Heart icon state
     const isWished = wishlist.includes(currentItem.id);
     const detailHeartIcon = document.getElementById('detail-heart-icon');
-    detailHeartIcon.setAttribute('fill', isWished ? '#e74c3c' : 'none');
-    detailHeartIcon.setAttribute('stroke', isWished ? '#e74c3c' : 'currentColor');
+    if (detailHeartIcon) {
+        detailHeartIcon.setAttribute('fill', isWished ? '#e74c3c' : 'none');
+        detailHeartIcon.setAttribute('stroke', isWished ? '#e74c3c' : 'currentColor');
+    }
 
     const detailImgContainer = document.getElementById('detail-image');
-    detailImgContainer.innerHTML = ''; 
-    
-    if (currentItem.img) {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'detail-image-wrapper';
-        const imgEl = document.createElement('img');
-        imgEl.src = currentItem.img;
-        imgEl.alt = currentItem.name;
-        imgEl.className = 'real-img';
-        imgEl.addEventListener('error', () => { wrapper.innerHTML = currentItem.svg; });
-        wrapper.appendChild(imgEl);
-        detailImgContainer.appendChild(wrapper);
-        
-        const caption = document.createElement('div');
-        caption.className = 'img-caption';
-        caption.innerText = 'Ảnh: Wikimedia Commons';
-        detailImgContainer.appendChild(caption);
-    } else {
-        detailImgContainer.innerHTML = `<div class="detail-image-wrapper">${currentItem.svg}</div><div class="img-caption">Ảnh minh họa</div>`;
+    if (detailImgContainer) {
+        detailImgContainer.innerHTML = ''; 
+        if (currentItem.img) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'detail-image-wrapper';
+            const imgEl = document.createElement('img');
+            imgEl.src = currentItem.img;
+            imgEl.alt = currentItem.name;
+            imgEl.className = 'real-img';
+            imgEl.addEventListener('error', () => { wrapper.innerHTML = currentItem.svg; });
+            wrapper.appendChild(imgEl);
+            detailImgContainer.appendChild(wrapper);
+            
+            const caption = document.createElement('div');
+            caption.className = 'img-caption';
+            caption.innerText = 'Ảnh: Wikimedia Commons';
+            detailImgContainer.appendChild(caption);
+        } else {
+            detailImgContainer.innerHTML = `<div class="detail-image-wrapper">${currentItem.svg}</div><div class="img-caption">Ảnh minh họa</div>`;
+        }
     }
     
-    document.getElementById('detail-title').innerText = currentItem.name;
+    const titleEl = document.getElementById('detail-title');
+    if (titleEl) titleEl.innerText = currentItem.name;
     
     const accContainer = document.getElementById('detail-accessories');
-    accContainer.innerHTML = '';
-    currentItem.accessories.forEach(acc => {
-        const pill = document.createElement('div');
-        pill.className = 'pill anim-btn';
-        pill.innerText = acc;
-        pill.onclick = () => toggleAccessory(pill, acc);
-        accContainer.appendChild(pill);
-    });
+    if (accContainer) {
+        accContainer.innerHTML = '';
+        currentItem.accessories.forEach(acc => {
+            const pill = document.createElement('div');
+            pill.className = 'pill anim-btn';
+            pill.innerText = acc;
+            pill.onclick = () => toggleAccessory(pill, acc);
+            accContainer.appendChild(pill);
+        });
+    }
 
     updateTabUI();
     navigateTo('detail-screen');
 }
 
 function toggleWishlistFromDetail(event) {
-    if(!currentItem) return;
+    if (!currentItem) return;
     if (wishlist.includes(currentItem.id)) {
         wishlist = wishlist.filter(itemId => itemId !== currentItem.id);
     } else {
@@ -236,31 +275,31 @@ function toggleWishlistFromDetail(event) {
     }
     saveState();
     
-    // Update detail UI
     const isWished = wishlist.includes(currentItem.id);
     const detailHeartIcon = document.getElementById('detail-heart-icon');
-    detailHeartIcon.setAttribute('fill', isWished ? '#e74c3c' : 'none');
-    detailHeartIcon.setAttribute('stroke', isWished ? '#e74c3c' : 'currentColor');
-    
-    // Update lists if we go back
+    if (detailHeartIcon) {
+        detailHeartIcon.setAttribute('fill', isWished ? '#e74c3c' : 'none');
+        detailHeartIcon.setAttribute('stroke', isWished ? '#e74c3c' : 'currentColor');
+    }
     renderCollections();
 }
 
 function addToCartFromDetail() {
-    if(!currentItem) return;
+    if (!currentItem) return;
     cart.push(currentItem.id);
     saveState();
     
-    // Animation for cart button
     const btn = document.querySelector('.action-bottom .btn-icon');
-    btn.style.transform = 'scale(1.2)';
-    btn.style.backgroundColor = 'var(--primary-color)';
-    btn.style.color = '#fff';
-    setTimeout(() => {
-        btn.style.transform = 'scale(1)';
-        btn.style.backgroundColor = 'transparent';
-        btn.style.color = 'var(--primary-color)';
-    }, 300);
+    if (btn) {
+        btn.style.transform = 'scale(1.2)';
+        btn.style.backgroundColor = 'var(--primary-color)';
+        btn.style.color = '#fff';
+        setTimeout(() => {
+            btn.style.transform = 'scale(1)';
+            btn.style.backgroundColor = 'transparent';
+            btn.style.color = 'var(--primary-color)';
+        }, 300);
+    }
 }
 
 function toggleAccessory(element, accessoryName) {
@@ -283,78 +322,80 @@ function updateTabUI() {
     tabs.forEach(tab => tab.classList.remove('active'));
     
     let content = "";
-    if (currentTab === 'origin') { tabs[0].classList.add('active'); content = currentItem.origin; }
-    else if (currentTab === 'features') { tabs[1].classList.add('active'); content = currentItem.features; }
-    else if (currentTab === 'usage') { tabs[2].classList.add('active'); content = currentItem.usage; }
-    else { tabs[3].classList.add('active'); content = currentItem.meaning; }
+    if (currentTab === 'origin') { if (tabs[0]) tabs[0].classList.add('active'); content = currentItem.origin; }
+    else if (currentTab === 'features') { if (tabs[1]) tabs[1].classList.add('active'); content = currentItem.features; }
+    else if (currentTab === 'usage') { if (tabs[2]) tabs[2].classList.add('active'); content = currentItem.usage; }
+    else { if (tabs[3]) tabs[3].classList.add('active'); content = currentItem.meaning; }
     
     const descEl = document.getElementById('detail-description');
-    descEl.classList.remove('fade-in-up');
-    void descEl.offsetWidth; 
-    descEl.innerText = content;
-    descEl.classList.add('fade-in-up');
+    if (descEl) {
+        descEl.classList.remove('fade-in-up');
+        void descEl.offsetWidth; 
+        descEl.innerText = content;
+        descEl.classList.add('fade-in-up');
+    }
 }
 
-// 8. Mix Result Logic
 function showMixResult() {
     const textEl = document.getElementById('mix-result-text');
     const imgContainer = document.getElementById('mix-image-container');
     
-    // Show image
-    imgContainer.innerHTML = '';
-    if (currentItem.img) {
-        const imgEl = document.createElement('img');
-        imgEl.src = currentItem.img;
-        imgEl.className = 'real-img';
-        imgEl.addEventListener('error', () => { imgContainer.innerHTML = currentItem.svg; });
-        imgContainer.appendChild(imgEl);
-    } else {
-        imgContainer.innerHTML = currentItem.svg;
+    if (imgContainer) {
+        imgContainer.innerHTML = '';
+        if (currentItem.img) {
+            const imgEl = document.createElement('img');
+            imgEl.src = currentItem.img;
+            imgEl.className = 'real-img';
+            imgEl.addEventListener('error', () => { imgContainer.innerHTML = currentItem.svg; });
+            imgContainer.appendChild(imgEl);
+        } else {
+            imgContainer.innerHTML = currentItem.svg;
+        }
     }
 
-    // Generate Text
-    if (selectedAccessories.length === 0) {
-        textEl.innerText = `Bộ ${currentItem.name} nguyên bản mang vẻ đẹp tinh tế. Hãy thử kết hợp thêm phụ kiện để tạo điểm nhấn nhé!`;
-    } else {
-        const styles = ["Truyền thống", "Phá cách", "Thanh lịch", "Hoài cổ", "Độc đáo"];
-        const randomStyle = styles[Math.floor(Math.random() * styles.length)];
-        textEl.innerText = `Sự kết hợp giữa ${currentItem.name} và ${selectedAccessories.join(', ')} mang đến một phong cách ${randomStyle}. Gam màu và phụ kiện rất hài hòa, làm nổi bật cá tính của bạn!`;
+    if (textEl) {
+        if (selectedAccessories.length === 0) {
+            textEl.innerText = `Bộ ${currentItem.name} nguyên bản mang vẻ đẹp tinh tế. Hãy thử kết hợp thêm phụ kiện để tạo điểm nhấn nhé!`;
+        } else {
+            const styles = ["Truyền thống", "Phá cách", "Thanh lịch", "Hoài cổ", "Độc đáo"];
+            const randomStyle = styles[Math.floor(Math.random() * styles.length)];
+            textEl.innerText = `Sự kết hợp giữa ${currentItem.name} và ${selectedAccessories.join(', ')} mang đến một phong cách ${randomStyle}. Gam màu và phụ kiện rất hài hòa, làm nổi bật cá tính của bạn!`;
+        }
     }
     
-    document.getElementById('mix-modal').classList.add('active');
+    const modal = document.getElementById('mix-modal');
+    if (modal) modal.classList.add('active');
 }
 
-// 9. List Modals (History, Wishlist, Cart) - Đã xử lý ảnh an toàn qua DOM
 function openListModal(type) {
-    // Cập nhật trạng thái active trực quan trên thanh điều hướng
     document.querySelectorAll('.bottom-nav .nav-item').forEach(el => el.classList.remove('active'));
-    if (type === 'history') document.querySelector('.bottom-nav .nav-item:nth-child(2)').classList.add('active');
-    if (type === 'wishlist') document.querySelector('.bottom-nav .nav-item:nth-child(3)').classList.add('active');
-    if (type === 'cart') document.querySelector('.bottom-nav .nav-item:nth-child(4)').classList.add('active');
+    if (type === 'history') {
+        const item = document.querySelector('.bottom-nav .nav-item:nth-child(2)');
+        if (item) item.classList.add('active');
+    }
+    if (type === 'wishlist') {
+        const item = document.querySelector('.bottom-nav .nav-item:nth-child(3)');
+        if (item) item.classList.add('active');
+    }
+    if (type === 'cart') {
+        const item = document.querySelector('.bottom-nav .nav-item:nth-child(4)');
+        if (item) item.classList.add('active');
+    }
 
     const titleEl = document.getElementById('list-modal-title');
     const contentEl = document.getElementById('list-modal-content');
+    if (!contentEl) return;
     contentEl.innerHTML = '';
     
     let sourceArray = [];
     let title = '';
     let actionText = '';
     
-    if (type === 'history') { 
-        sourceArray = viewHistory; 
-        title = 'Lịch sử xem'; 
-        actionText = 'Xem lại'; 
-    } else if (type === 'wishlist') { 
-        sourceArray = wishlist; 
-        title = 'Mục yêu thích'; 
-        actionText = 'Chi tiết'; 
-    } else if (type === 'cart') { 
-        sourceArray = cart; 
-        title = 'Giỏ đồ của bạn'; 
-        actionText = 'Thanh toán'; 
-    }
+    if (type === 'history') { sourceArray = viewHistory; title = 'Lịch sử xem'; actionText = 'Xem lại'; }
+    else if (type === 'wishlist') { sourceArray = wishlist; title = 'Mục yêu thích'; actionText = 'Chi tiết'; }
+    else if (type === 'cart') { sourceArray = cart; title = 'Giỏ đồ của bạn'; actionText = 'Thanh toán'; }
     
-    titleEl.innerText = title;
+    if (titleEl) titleEl.innerText = title;
     
     if (sourceArray.length === 0) {
         contentEl.innerHTML = `<div class="empty-msg">Chưa có sản phẩm nào.</div>`;
@@ -370,7 +411,6 @@ function openListModal(type) {
                 openDetail(item.id);
             };
             
-            // Khung chứa ảnh
             const imgContainer = document.createElement('div');
             imgContainer.className = 'list-item-img';
             
@@ -388,7 +428,6 @@ function openListModal(type) {
                 imgContainer.innerHTML = item.svg;
             }
 
-            // Khung thông tin
             const infoDiv = document.createElement('div');
             infoDiv.className = 'list-item-info';
             infoDiv.innerHTML = `
@@ -396,7 +435,6 @@ function openListModal(type) {
                 <p>${item.subtitle}</p>
             `;
 
-            // Nút hành động
             const actionDiv = document.createElement('div');
             actionDiv.className = 'list-item-action';
             actionDiv.innerText = actionText;
@@ -409,11 +447,13 @@ function openListModal(type) {
         });
     }
     
-    document.getElementById('list-modal').classList.add('active');
+    const modal = document.getElementById('list-modal');
+    if (modal) modal.classList.add('active');
 }
 
 function closeModal(modalId) {
-    document.getElementById(modalId).classList.remove('active');
+    const modal = document.getElementById(modalId);
+    if (modal) modal.classList.remove('active');
 }
 
 document.addEventListener('DOMContentLoaded', () => {

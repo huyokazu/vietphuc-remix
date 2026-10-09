@@ -1,9 +1,8 @@
 // ================= TRỢ LÝ AI VIỆT PHỤC (ai.js) =================
 
-const GEMINI_API_KEY = ""; // Dán API key của bạn vào đây (hoặc nhập trên giao diện)
-const GEMINI_MODEL = "gemini-3.8-flash";
+// Thay thế đường dẫn này bằng URL Worker thực tế của bạn sau khi deploy lên Cloudflare
+const AI_PROXY_URL = "https://vietphuc-ai.ongtraudo.workers.dev/chat";
 
-const AI_STORAGE_KEY = "vr_gemini_key";
 const aiConversationHistory = [];
 
 const SYSTEM_INSTRUCTION = {
@@ -14,13 +13,6 @@ const SYSTEM_INSTRUCTION = {
               "Nếu thông tin chưa rõ hoặc có nhiều quan điểm lịch sử, hãy nói rõ thay vì khẳng định tuyệt đối. Không bịa đặt nguồn gốc."
     }]
 };
-
-function getApiKey() {
-    if (GEMINI_API_KEY && GEMINI_API_KEY.trim() !== "") {
-        return GEMINI_API_KEY.trim();
-    }
-    return (localStorage.getItem(AI_STORAGE_KEY) || "").trim();
-}
 
 function escapeHtml(str) {
     return str
@@ -75,11 +67,6 @@ function openAiModal() {
     if (!modal) return;
     modal.classList.add("active");
 
-    const keyInput = document.getElementById("ai-key-input");
-    if (keyInput) {
-        keyInput.value = localStorage.getItem(AI_STORAGE_KEY) || "";
-    }
-
     const container = document.getElementById("ai-messages");
     if (container && container.children.length === 0) {
         appendMessage("model", "Xin chào! Mình là trợ lý ảo Việt phục. Bạn muốn tìm hiểu hay phối đồ cho dịp nào hôm nay?");
@@ -92,24 +79,12 @@ function closeAiModal() {
 }
 
 async function callGemini(userText) {
-    const apiKey = getApiKey();
-    if (!apiKey) {
-        appendMessage(
-            "model",
-            "⚠️ <strong>Chưa có API key</strong>.<br>" +
-            "Vui lòng lấy key miễn phí tại <a href='https://aistudio.google.com/' target='_blank' style='color: var(--primary-color, #C48C71); text-decoration: underline;'>Google AI Studio</a> " +
-            "rồi nhập vào ô phía trên và bấm <em>Lưu</em>.",
-            true
-        );
-        return;
-    }
-
     aiConversationHistory.push({
         role: "user",
         parts: [{ text: userText }]
     });
 
-    while (aiConversationHistory.length > 10) {
+    while (aiConversationHistory.length > 12) {
         aiConversationHistory.shift();
     }
 
@@ -130,43 +105,39 @@ async function callGemini(userText) {
         container.scrollTop = container.scrollHeight;
     }
 
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
-
     try {
-        const response = await fetch(url, {
+        const response = await fetch(AI_PROXY_URL, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
-                "x-goog-api-key": apiKey
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 systemInstruction: SYSTEM_INSTRUCTION,
-                contents: aiConversationHistory,
-                generationConfig: {
-                    temperature: 0.7,
-                    maxOutputTokens: 800
-                }
+                contents: aiConversationHistory
             })
         });
 
         const loadingElem = document.getElementById(loadingId);
         if (loadingElem) loadingElem.remove();
 
+        const data = await response.json().catch(() => ({}));
+
         if (!response.ok) {
-            let errorMsg = `Lỗi máy chủ (${response.status}).`;
-            if (response.status === 400 || response.status === 403) {
-                errorMsg = "API key không hợp lệ hoặc không có quyền truy cập model. Vui lòng kiểm tra lại.";
+            let errorMsg = data.error || `Lỗi máy chủ (${response.status}).`;
+            if (response.status === 403) {
+                errorMsg = "Không có quyền truy cập (Chỉ hỗ trợ từ domain được cấp phép).";
             } else if (response.status === 429) {
-                errorMsg = "Đã vượt quá hạn mức sử dụng (Rate limit). Vui lòng chờ giây lát rồi thử lại.";
+                errorMsg = "Hệ thống đang quá tải hoặc hết hạn mức yêu cầu. Vui lòng thử lại sau giây lát.";
+            } else if (response.status >= 500) {
+                errorMsg = "Máy chủ proxy gặp sự cố kỹ thuật. Vui lòng kiểm tra lại cấu hình.";
             }
+
             appendMessage("model", `⚠️ ${errorMsg}`);
             aiConversationHistory.pop();
             return;
         }
 
-        const data = await response.json();
-        const candidate = data.candidates && data.candidates[0];
-        const replyText = candidate?.content?.parts?.[0]?.text || "Không nhận được phản hồi từ AI.";
+        const replyText = data.text || "Không nhận được phản hồi từ AI.";
 
         aiConversationHistory.push({
             role: "model",
@@ -177,7 +148,7 @@ async function callGemini(userText) {
     } catch (err) {
         const loadingElem = document.getElementById(loadingId);
         if (loadingElem) loadingElem.remove();
-        appendMessage("model", "⚠️ Không thể kết nối với mạng hoặc máy chủ Google AI. Vui lòng thử lại.");
+        appendMessage("model", "⚠️ Không thể kết nối với máy chủ proxy. Vui lòng kiểm tra kết nối mạng hoặc đường dẫn Worker.");
         aiConversationHistory.pop();
     }
 }
@@ -228,28 +199,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!text) return;
             input.value = "";
             callGemini(text);
-        });
-    }
-
-    const saveKeyBtn = document.getElementById("ai-key-save");
-    const clearKeyBtn = document.getElementById("ai-key-clear");
-    const keyInput = document.getElementById("ai-key-input");
-
-    if (saveKeyBtn && keyInput) {
-        saveKeyBtn.addEventListener("click", () => {
-            const val = keyInput.value.trim();
-            if (val) {
-                localStorage.setItem(AI_STORAGE_KEY, val);
-                alert("Đã lưu API key thành công!");
-            }
-        });
-    }
-
-    if (clearKeyBtn && keyInput) {
-        clearKeyBtn.addEventListener("click", () => {
-            localStorage.removeItem(AI_STORAGE_KEY);
-            keyInput.value = "";
-            alert("Đã xóa API key.");
         });
     }
 
