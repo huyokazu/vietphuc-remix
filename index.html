@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Việt phục Remix - Auth & Collection</title>
+    <title>Việt phục Remix - Di sản Cổ phục Việt</title>
+    <!-- Google Fonts: Sans-serif hiện đại, thanh lịch -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -27,7 +28,7 @@
                 <div class="auth-form">
                     <div class="input-group">
                         <label>Email</label>
-                        <input type="email" placeholder="hello@example.com">
+                        <input type="email" placeholder="student@example.edu.vn">
                     </div>
                     <div class="input-group">
                         <label>Mật khẩu</label>
@@ -42,98 +43,165 @@
 
                 <div class="social-login">
                     <button class="btn-social anim-btn" onclick="navigateTo('collections-screen')">
-                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                        </svg>
                         Google
                     </button>
                     <button class="btn-social anim-btn" onclick="navigateTo('collections-screen')">
-                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2"/><path d="M16.671 15.542l.532-3.469h-3.328V9.823c0-.949.465-1.874 1.956-1.874h1.514V5.011s-1.374-.235-2.686-.235c-2.741 0-4.533 1.662-4.533 4.669v2.628H7.078v3.469h3.047v8.385a12.09 12.09 0 003.75 0v-8.385h2.796z" fill="#ffffff"/></svg>
+                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2"/>
+                            <path d="M16.671 15.542l.532-3.469h-3.328V9.823c0-.949.465-1.874 1.956-1.874h1.514V5.011s-1.374-.235-2.686-.235c-2.741 0-4.533 1.662-4.533 4.669v2.628H7.078v3.469h3.047v8.385a12.09 12.09 0 003.75 0v-8.385h2.796z" fill="#ffffff"/>
+                        </svg>
                         Facebook
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- ==================== MÀN HÌNH COLLECTIONS ==================== -->
+        <!-- ==================== MÀN HÌNH BỘ SƯU TẬP ==================== -->
         <div id="collections-screen" class="screen">
             <div class="scroll-content">
                 <div class="header">
                     <div class="user-info">
                         <div class="avatar anim-btn">
-                            <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#D5A992"/><circle cx="20" cy="15" r="7" fill="#fff"/><path d="M 8 35 Q 20 25 32 35" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+                            <svg viewBox="0 0 40 40">
+                                <circle cx="20" cy="20" r="20" fill="#D5A992"/>
+                                <circle cx="20" cy="15" r="7" fill="#fff"/>
+                                <path d="M 8 35 Q 20 25 32 35" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
+                            </svg>
                         </div>
                         <div class="greeting">
                             <span class="hi">Xin chào,</span>
-                            <span class="name">Người Yêu Cổ Phục</span>
+                            <span class="name">Thế hệ trẻ yêu Cổ phục</span>
                         </div>
                     </div>
-                    <button class="icon-btn anim-btn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                    </button>
                 </div>
 
                 <div class="search-bar">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a08b7e" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a08b7e" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
                     <input type="text" id="search-input" placeholder="Tìm kiếm trang phục..." oninput="handleSearch(this.value)">
                 </div>
 
                 <div class="section-header">
-                    <h3>Danh mục</h3>
+                    <h3>Danh mục trang phục</h3>
                 </div>
 
                 <div class="categories">
                     <div class="category active anim-btn" id="cat-all" onclick="setCategory('all')">
-                        <div class="cat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></div>
+                        <div class="cat-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
+                        </div>
                         <span>Tất cả</span>
                     </div>
                     <div class="category anim-btn" id="cat-nguthan" onclick="setCategory('nguthan')">
-                        <div class="cat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46L16 2a8 8 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z"></path></svg></div>
+                        <div class="cat-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.38 3.46L16 2a8 8 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z"></path>
+                            </svg>
+                        </div>
                         <span>Ngũ thân</span>
                     </div>
                     <div class="category anim-btn" id="cat-aotac" onclick="setCategory('aotac')">
-                        <div class="cat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10"></path><polyline points="2 6 12 2 22 6"></polyline><path d="M12 2v20"></path></svg></div>
+                        <div class="cat-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 10v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10"></path>
+                                <polyline points="2 6 12 2 22 6"></polyline>
+                                <path d="M12 2v20"></path>
+                            </svg>
+                        </div>
                         <span>Áo tấc</span>
                     </div>
                     <div class="category anim-btn" id="cat-nhatbinh" onclick="setCategory('nhatbinh')">
-                        <div class="cat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 17 22 12"></polyline></svg></div>
+                        <div class="cat-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                <polyline points="2 17 12 22 22 17"></polyline>
+                                <polyline points="2 12 17 22 12"></polyline>
+                            </svg>
+                        </div>
                         <span>Nhật Bình</span>
                     </div>
-                     <div class="category anim-btn" id="cat-giaolinh" onclick="setCategory('giaolinh')">
-                        <div class="cat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l16 16M20 4L4 20"></path></svg></div>
+                    <div class="category anim-btn" id="cat-giaolinh" onclick="setCategory('giaolinh')">
+                        <div class="cat-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4l16 16M20 4L4 20"></path>
+                            </svg>
+                        </div>
                         <span>Giao Lĩnh</span>
                     </div>
                     <div class="category anim-btn" id="cat-cachtan" onclick="setCategory('cachtan')">
-                        <div class="cat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12L12 2L22 12L12 22L2 12Z"></path></svg></div>
+                        <div class="cat-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M2 12L12 2L22 12L12 22L2 12Z"></path>
+                            </svg>
+                        </div>
                         <span>Cách tân</span>
                     </div>
                 </div>
 
-                <div class="grid-products" id="product-list">
-                    <!-- Danh sách 30 sản phẩm render bằng JS -->
-                </div>
+                <!-- Lưới 30 sản phẩm render từ JS -->
+                <div class="grid-products" id="product-list"></div>
             </div>
 
-            <!-- Navbar ghim chặt dưới cùng -->
+            <!-- Thanh điều hướng dưới/trên (đúng thứ tự: Trang chủ, Lịch sử, Yêu thích, Giỏ đồ) -->
             <div class="bottom-nav">
-                <a href="#" class="nav-item active anim-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a>
-                <a href="#" class="nav-item anim-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></a>
-                <a href="#" class="nav-item anim-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></a>
-                <a href="#" class="nav-item anim-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></a>
+                <a href="javascript:void(0)" class="nav-item active anim-btn" onclick="navigateTo('collections-screen')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                </a>
+                <a href="javascript:void(0)" class="nav-item anim-btn" onclick="openListModal('history')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                </a>
+                <a href="javascript:void(0)" class="nav-item anim-btn" onclick="openListModal('wishlist')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                </a>
+                <a href="javascript:void(0)" class="nav-item anim-btn" onclick="openListModal('cart')" style="position: relative;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span id="cart-badge" class="cart-badge" style="display: none;">0</span>
+                </a>
             </div>
         </div>
 
-        <!-- ==================== MÀN HÌNH DETAIL ==================== -->
+        <!-- ==================== MÀN HÌNH CHI TIẾT ==================== -->
         <div id="detail-screen" class="screen">
             <div class="detail-header-overlay">
                 <button class="back-btn anim-btn" onclick="navigateTo('collections-screen')">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
                 </button>
-                <button class="fav-btn anim-btn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <button class="fav-btn anim-btn" onclick="toggleWishlistFromDetail(event)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="detail-heart-icon">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
                 </button>
             </div>
             
             <div class="detail-image-container" id="detail-image">
-                <!-- Image & SVG render by JS -->
+                <!-- Wrapper ảnh và Fallback SVG render bởi JS -->
             </div>
 
             <div class="bottom-sheet">
@@ -145,14 +213,14 @@
                 <div class="accessory-section">
                     <h4>Chọn phụ kiện phối kèm</h4>
                     <div class="accessory-pills" id="detail-accessories">
-                        <!-- Phụ kiện render bằng JS -->
+                        <!-- Danh sách pill phụ kiện render bởi JS -->
                     </div>
                 </div>
 
                 <div class="info-tabs">
                     <button class="tab-btn active" onclick="switchTab('origin')">Nguồn gốc</button>
                     <button class="tab-btn" onclick="switchTab('features')">Đặc điểm</button>
-                    <button class="tab-btn" onclick="switchTab('usage')">Sử dụng</button>
+                    <button class="tab-btn" onclick="switchTab('usage')">Hoàn cảnh</button>
                     <button class="tab-btn" onclick="switchTab('meaning')">Ý nghĩa</button>
                 </div>
 
@@ -161,22 +229,44 @@
                 </div>
 
                 <div class="action-bottom">
-                    <button class="btn-icon anim-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></button>
+                    <button class="btn-icon anim-btn" onclick="addToCartFromDetail()" title="Thêm vào giỏ đồ">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <path d="M12 10v6"></path>
+                            <path d="M9 13h6"></path>
+                        </svg>
+                    </button>
                     <button class="btn-primary anim-btn" onclick="showMixResult()">Xem kết quả phối đồ</button>
                 </div>
             </div>
         </div>
 
-        <!-- Popup Kết quả phối đồ -->
+        <!-- ==================== CÁC MODAL CHỨC NĂNG ==================== -->
+        
+        <!-- Modal 1: Kết quả Phối Đồ -->
         <div id="mix-modal" class="modal">
             <div class="modal-content">
+                <button class="modal-close" onclick="closeModal('mix-modal')">×</button>
                 <h3>Bộ trang phục của bạn</h3>
+                <div id="mix-image-container" class="mix-image-container"></div>
                 <p id="mix-result-text"></p>
-                <button class="btn-primary anim-btn" onclick="closeModal()">Đóng</button>
             </div>
         </div>
-    </div>
 
+        <!-- Modal 2: Danh sách Lịch sử / Yêu thích / Giỏ đồ -->
+        <div id="list-modal" class="modal bottom-sheet-modal">
+            <div class="modal-content-sheet">
+                <div class="sheet-indicator"></div>
+                <button class="modal-close-sheet" onclick="closeModal('list-modal')">×</button>
+                <h3 id="list-modal-title">Tiêu đề</h3>
+                <div id="list-modal-content" class="list-modal-items">
+                    <!-- Danh sách mục tương ứng render bởi JS -->
+                </div>
+            </div>
+        </div>
+
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
