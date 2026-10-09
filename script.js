@@ -4,41 +4,41 @@ const categoryDetails = {
     nhatbinh: {
         origin: 'Năm 1807 vua Gia Long quy định thành trang phục triều đình; là lễ phục của hoàng hậu, công chúa, mệnh phụ triều Nguyễn.',
         features: 'Cổ áo lớn hình chữ nhật trước ngực, thêu phượng, sen, mây; màu sắc theo phẩm cấp; đi kèm khăn vành.',
-        usage: 'Sử dụng trong các dịp lễ lớn, tế giao, triều hội.',
-        meaning: 'Đại diện cho phẩm hạnh và địa vị cao quý. Lời khuyên chung cho Gen Z: hiểu ý nghĩa để mặc đúng dịp, phối phụ kiện giữ bản sắc nhưng vẫn cá tính.',
+        usage: 'Sử dụng trong các dịp đại lễ, tế giao, triều hội và hôn lễ truyền thống ngày nay.',
+        meaning: 'Đại diện cho phẩm hạnh, sự đoan trang và tôn nghiêm di sản. Lời khuyên cho học sinh, sinh viên: hiểu bối cảnh lịch sử để mặc đúng dịp, kết hợp phụ kiện giữ vẹn bản sắc.',
         svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M 50 40 L 150 40 L 180 180 L 20 180 Z" fill="#B35A42"/><rect x="75" y="40" width="50" height="70" fill="#EBD2B5"/><circle cx="100" cy="75" r="15" fill="#B35A42"/><path d="M 75 40 L 100 65 L 125 40" stroke="#C49378" stroke-width="4" fill="none"/></svg>`
     },
     aotac: {
         origin: 'Biến thể của áo ngũ thân (áo ngũ thân lập lĩnh tay thụng), thịnh hành thời Nguyễn.',
-        features: 'Áo năm thân, cổ đứng, tay rộng thụng.',
-        usage: 'Lễ phục trang trọng trong lễ tế, cưới hỏi, Tết, mừng thọ; ngày nay hợp lễ tốt nghiệp, khai giảng.',
-        meaning: 'Thể hiện sự thành kính, nghiêm cẩn. Lời khuyên chung cho Gen Z: hiểu ý nghĩa để mặc đúng dịp, phối phụ kiện giữ bản sắc nhưng vẫn cá tính.',
+        features: 'Áo năm thân, cổ đứng, tay rộng thụng chấm gối khi buông.',
+        usage: 'Lễ phục trang trọng trong lễ tế, cưới hỏi, Tết, mừng thọ; rất phù hợp chụp kỷ yếu, lễ tốt nghiệp của sinh viên.',
+        meaning: 'Thể hiện sự thành kính, phong thái đĩnh đạc và cốt cách nho nhã.',
         svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M 70 40 L 130 40 L 150 180 L 50 180 Z" fill="#C49378"/><path d="M 70 40 L 20 50 L 20 120 L 60 120 Z" fill="#C49378" opacity="0.8"/><path d="M 130 40 L 180 50 L 180 120 L 140 120 Z" fill="#C49378" opacity="0.8"/><path d="M 100 40 L 100 180" stroke="#fff" stroke-width="2" opacity="0.4"/><rect x="85" y="25" width="30" height="15" fill="#3B2A22" rx="2"/></svg>`
     },
     nguthan: {
-        origin: 'Trang phục phổ biến nhất thời Nguyễn, tiền thân của áo dài hiện đại ngày nay.',
-        features: 'Cổ đứng, cài khuy vai phải, áo có 5 thân (4 thân ngoài, 1 thân con ẩn trong).',
-        usage: 'Mặc hằng ngày, dịp Tết, lễ hội, tiếp khách, các hoạt động văn hóa.',
-        meaning: 'Bốn thân tượng trưng tứ thân phụ mẫu, thân thứ năm là người mặc; năm khuy là ngũ thường Nhân – Lễ – Nghĩa – Trí – Tín. Lời khuyên chung cho Gen Z: hiểu ý nghĩa để mặc đúng dịp, phối phụ kiện giữ bản sắc nhưng vẫn cá tính.',
+        origin: 'Trang phục phổ biến nhất thời Nguyễn, tiền thân trực tiếp của chiếc áo dài truyền thống.',
+        features: 'Cổ đứng lập lĩnh, cài 5 khuy vai phải, áo có 5 thân (4 thân ngoài, 1 thân con ẩn kín đáo bên trong).',
+        usage: 'Mặc thường nhật, dịp Tết, trẩy hội văn hóa, dạo phố, chụp ảnh nghệ thuật.',
+        meaning: 'Bốn thân tượng trưng tứ thân phụ mẫu, thân trong tượng trưng bản thân; năm khuy đại diện cho ngũ thường Nhân – Lễ – Nghĩa – Trí – Tín.',
         svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M 60 40 L 140 40 L 170 180 L 100 180 L 100 60 L 100 180 L 30 180 Z" fill="#D5A992"/><path d="M 100 40 L 100 180" stroke="#fff" stroke-width="2" opacity="0.5"/><circle cx="115" cy="50" r="3" fill="#3B2A22"/><circle cx="120" cy="70" r="3" fill="#3B2A22"/><circle cx="120" cy="90" r="3" fill="#3B2A22"/><rect x="85" y="25" width="30" height="15" fill="#3B2A22" rx="2"/></svg>`
     },
     giaolinh: {
-        origin: 'Tồn tại lâu đời trong lịch sử Việt, có từ trước khi áo ngũ thân ra đời.',
-        features: 'Áo cổ chéo, vạt trái đè lên vạt phải.',
-        usage: 'Gắn với sĩ tử, thư sinh, dùng trong lễ vinh quy hoặc lễ nghi truyền thống.',
-        meaning: 'Thể hiện tính học thuật, khiêm nhường. Lời khuyên chung cho Gen Z: hiểu ý nghĩa để mặc đúng dịp, phối phụ kiện giữ bản sắc nhưng vẫn cá tính.',
+        origin: 'Y phục cổ xưa có niên đại lâu đời trong văn hiến Đại Việt, tiền thân trước thời Nguyễn.',
+        features: 'Áo cổ chéo, vạt trái đè lên vạt phải (tương đồng về kết cấu vạt nhưng mang bản sắc Việt ở đường nét, chất liệu, khăn đội).',
+        usage: 'Gắn liền với hình ảnh danh sĩ, thư sinh, lễ hội văn hiến, nghi thức tâm linh thanh tịnh.',
+        meaning: 'Biểu trưng cho tinh thần hiếu học, sự khiêm cung và chiều sâu mỹ cảm cổ phong.',
         svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#E6C8B8"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" fill="#3B2A22">Giao Lĩnh</text></svg>`
     },
     cachtan: {
-        origin: 'Phát triển từ áo ngũ thân vào thập niên 1930 (phong trào Lemur, Lê Phổ).',
-        features: 'Dáng ôm thanh mảnh, thiết kế tối giản, chất liệu hiện đại đa dạng.',
-        usage: 'Trang phục của học sinh, sinh viên trong lễ khai giảng, tốt nghiệp, Tết, dạo phố.',
-        meaning: 'Giao thoa giữa nét đẹp truyền thống và phong cách hiện đại. Lời khuyên chung cho Gen Z: hiểu ý nghĩa để mặc đúng dịp, phối phụ kiện giữ bản sắc nhưng vẫn cá tính.',
+        origin: 'Phát triển từ áo ngũ thân từ đầu thế kỷ XX (phong trào Lemur, áo dài Lê Phổ) và được thế hệ trẻ tiếp nối.',
+        features: 'Dáng áo tinh gọn, hiện đại, dễ ứng dụng với các chất liệu tự nhiên đương đại.',
+        usage: 'Học sinh, sinh viên diện ngày tựu trường, dạo phố, chụp ảnh kỷ niệm, giao lưu quốc tế.',
+        meaning: 'Cầu nối nhịp sống năng động của giới trẻ với cội nguồn văn hóa tổ tiên.',
         svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#E6C8B8"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" fill="#3B2A22">Cách Tân</text></svg>`
     }
 };
 
-const accessoriesPool = ['Khăn vấn', 'Quạt', 'Guốc mộc', 'Túi gấm', 'Khăn xếp', 'Trâm cài', 'Hài thêu', 'Kiềng cổ', 'Nón lá', 'Ngọc bội'];
+const accessoriesPool = ['Khăn vấn', 'Quạt xếp', 'Guốc mộc', 'Túi gấm', 'Khăn xếp', 'Trâm cài', 'Hài thêu', 'Kiềng cổ', 'Nón lá', 'Ngọc bội'];
 
 const rawItems = [
     { id: 1, categoryId: 'nhatbinh', name: 'Hoàng hậu Nam Phương mặc áo Nhật Bình, khăn vành', img: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Nam_Ph%C6%B0%C6%A1ng_empress_of_Vietnam.jpg/960px-Nam_Ph%C6%B0%C6%A1ng_empress_of_Vietnam.jpg' },
@@ -96,25 +96,10 @@ let currentSearchQuery = '';
 
 let viewHistory = JSON.parse(localStorage.getItem('vr_history')) || [];
 let wishlist = JSON.parse(localStorage.getItem('vr_wishlist')) || [];
-let cart = JSON.parse(localStorage.getItem('vr_cart')) || [];
 
 function saveState() {
     localStorage.setItem('vr_history', JSON.stringify(viewHistory));
     localStorage.setItem('vr_wishlist', JSON.stringify(wishlist));
-    localStorage.setItem('vr_cart', JSON.stringify(cart));
-    updateCartBadge();
-}
-
-function updateCartBadge() {
-    const badge = document.getElementById('cart-badge');
-    if (badge) {
-        if (cart.length > 0) {
-            badge.style.display = 'flex';
-            badge.innerText = cart.length;
-        } else {
-            badge.style.display = 'none';
-        }
-    }
 }
 
 function navigateTo(screenId) {
@@ -240,10 +225,10 @@ function openDetail(id) {
             
             const caption = document.createElement('div');
             caption.className = 'img-caption';
-            caption.innerText = 'Ảnh: Wikimedia Commons';
+            caption.innerText = 'Tư liệu ảnh di sản (Wikimedia Commons)';
             detailImgContainer.appendChild(caption);
         } else {
-            detailImgContainer.innerHTML = `<div class="detail-image-wrapper">${currentItem.svg}</div><div class="img-caption">Ảnh minh họa</div>`;
+            detailImgContainer.innerHTML = `<div class="detail-image-wrapper">${currentItem.svg}</div><div class="img-caption">Ảnh phác họa di sản</div>`;
         }
     }
     
@@ -282,24 +267,6 @@ function toggleWishlistFromDetail(event) {
         detailHeartIcon.setAttribute('stroke', isWished ? '#e74c3c' : 'currentColor');
     }
     renderCollections();
-}
-
-function addToCartFromDetail() {
-    if (!currentItem) return;
-    cart.push(currentItem.id);
-    saveState();
-    
-    const btn = document.querySelector('.action-bottom .btn-icon');
-    if (btn) {
-        btn.style.transform = 'scale(1.2)';
-        btn.style.backgroundColor = 'var(--primary-color)';
-        btn.style.color = '#fff';
-        setTimeout(() => {
-            btn.style.transform = 'scale(1)';
-            btn.style.backgroundColor = 'transparent';
-            btn.style.color = 'var(--primary-color)';
-        }, 300);
-    }
 }
 
 function toggleAccessory(element, accessoryName) {
@@ -355,16 +322,45 @@ function showMixResult() {
 
     if (textEl) {
         if (selectedAccessories.length === 0) {
-            textEl.innerText = `Bộ ${currentItem.name} nguyên bản mang vẻ đẹp tinh tế. Hãy thử kết hợp thêm phụ kiện để tạo điểm nhấn nhé!`;
+            textEl.innerText = `Bộ ${currentItem.name} mang vẻ đẹp trang nhã nguyên bản. Bạn có thể mở tiếp trong Studio để phối cùng bảng màu cổ truyền và phụ kiện đa tầng!`;
         } else {
-            const styles = ["Truyền thống", "Phá cách", "Thanh lịch", "Hoài cổ", "Độc đáo"];
+            const styles = ["Truyền thống chuẩn mực", "Thanh lịch cổ phong", "Giao thoa hiện đại", "Đài các cung đình"];
             const randomStyle = styles[Math.floor(Math.random() * styles.length)];
-            textEl.innerText = `Sự kết hợp giữa ${currentItem.name} và ${selectedAccessories.join(', ')} mang đến một phong cách ${randomStyle}. Gam màu và phụ kiện rất hài hòa, làm nổi bật cá tính của bạn!`;
+            textEl.innerText = `Phác thảo: ${currentItem.name} đi cùng ${selectedAccessories.join(', ')} mang lại ấn tượng "${randomStyle}". Sự kết hợp này tôn vinh nét hài hòa của cổ phục Việt!`;
         }
     }
     
     const modal = document.getElementById('mix-modal');
     if (modal) modal.classList.add('active');
+}
+
+// Thay thế nút giỏ hàng: Lưu trang phục đang xem vào Lookbook
+function saveCurrentDetailToLookbook() {
+    if (!currentItem) return;
+    const user = typeof getCurrentUser === 'function' ? getCurrentUser() : null;
+    const key = 'vr_lookbook_' + (user ? user.username : 'guest');
+    const looks = JSON.parse(localStorage.getItem(key)) || [];
+
+    const newLook = {
+        id: 'look_' + Date.now(),
+        createdAt: new Date().toLocaleDateString('vi-VN'),
+        outfitName: currentItem.name,
+        eventName: 'Khám phá di sản',
+        regionName: 'Toàn quốc',
+        styleName: 'Truyền thống chuẩn mực',
+        colors: ['#C48C71', '#EFEBD9'],
+        accessories: [...selectedAccessories],
+        score: 95,
+        warningsCount: 0
+    };
+
+    looks.unshift(newLook);
+    localStorage.setItem(key, JSON.stringify(looks));
+    if (typeof showToastMsg === 'function') {
+        showToastMsg('Đã lưu outfit vào Lookbook!');
+    } else {
+        alert('Đã lưu outfit vào Lookbook cá nhân!');
+    }
 }
 
 function openListModal(type) {
@@ -377,10 +373,6 @@ function openListModal(type) {
         const item = document.querySelector('.bottom-nav .nav-item:nth-child(3)');
         if (item) item.classList.add('active');
     }
-    if (type === 'cart') {
-        const item = document.querySelector('.bottom-nav .nav-item:nth-child(4)');
-        if (item) item.classList.add('active');
-    }
 
     const titleEl = document.getElementById('list-modal-title');
     const contentEl = document.getElementById('list-modal-content');
@@ -391,14 +383,13 @@ function openListModal(type) {
     let title = '';
     let actionText = '';
     
-    if (type === 'history') { sourceArray = viewHistory; title = 'Lịch sử xem'; actionText = 'Xem lại'; }
-    else if (type === 'wishlist') { sourceArray = wishlist; title = 'Mục yêu thích'; actionText = 'Chi tiết'; }
-    else if (type === 'cart') { sourceArray = cart; title = 'Giỏ đồ của bạn'; actionText = 'Thanh toán'; }
+    if (type === 'history') { sourceArray = viewHistory; title = 'Lịch sử khám phá'; actionText = 'Chi tiết'; }
+    else if (type === 'wishlist') { sourceArray = wishlist; title = 'Trang phục yêu thích'; actionText = 'Khám phá'; }
     
     if (titleEl) titleEl.innerText = title;
     
     if (sourceArray.length === 0) {
-        contentEl.innerHTML = `<div class="empty-msg">Chưa có sản phẩm nào.</div>`;
+        contentEl.innerHTML = `<div class="empty-msg">Chưa có trang phục nào trong danh mục này.</div>`;
     } else {
         sourceArray.forEach(id => {
             const item = outfits.find(o => o.id === id);
@@ -457,6 +448,5 @@ function closeModal(modalId) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    updateCartBadge();
     renderCollections();
 });

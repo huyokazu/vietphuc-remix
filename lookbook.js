@@ -64,7 +64,7 @@ function openLookbook() {
     container.innerHTML = '';
 
     if (looks.length === 0) {
-        container.innerHTML = '<div class="empty-msg">Chưa có bộ phối nào trong Lookbook.</div>';
+        container.innerHTML = '<div class="empty-msg">Chưa có bộ phối nào trong Lookbook cá nhân.</div>';
     } else {
         looks.forEach(item => {
             const card = document.createElement('div');
@@ -89,12 +89,12 @@ function openLookbook() {
                     </label>
                 </div>
                 <div style="font-size:12px; color:var(--text-muted);">
-                    Phụ kiện: ${item.accessories.length > 0 ? item.accessories.join(', ') : 'Không có'}<br>
-                    Điểm phối: <strong>${item.score}/100</strong> • Cảnh báo: ${item.warningsCount}
+                    Phụ kiện đi kèm: <strong>${item.accessories.length > 0 ? item.accessories.join(', ') : 'Nguyên bản'}</strong><br>
+                    Điểm phối sắc: <strong>${item.score}/100</strong> • Lưu ý văn hoá: ${item.warningsCount}
                 </div>
                 <div style="display:flex; gap:8px; justify-content:flex-end;">
                     <button class="pill anim-btn" style="padding:4px 10px; font-size:11px;" onclick="shareLook('${item.id}')">Chia sẻ</button>
-                    <button class="pill anim-btn" style="padding:4px 10px; font-size:11px;" onclick="downloadLookCard('${item.id}')">Tải ảnh</button>
+                    <button class="pill anim-btn" style="padding:4px 10px; font-size:11px;" onclick="downloadLookCard('${item.id}')">Tải ảnh thẻ</button>
                     <button class="pill anim-btn" style="padding:4px 10px; font-size:11px; color:#c0392b;" onclick="deleteLook('${item.id}')">Xoá</button>
                 </div>
             `;
@@ -115,7 +115,7 @@ function deleteLook(id) {
 function compareLooks() {
     const checked = Array.from(document.querySelectorAll('.compare-checkbox:checked')).map(cb => cb.value);
     if (checked.length !== 2) {
-        showToastMsg('Vui lòng chọn đúng 2 bộ để so sánh!');
+        showToastMsg('Vui lòng chọn đúng 2 bộ để so sánh cấu trúc!');
         return;
     }
 
@@ -142,13 +142,13 @@ function compareLooks() {
             </thead>
             <tbody>
                 <tr style="border-bottom:1px solid #eee;"><td style="padding:6px 4px; color:var(--text-muted);">Trang phục</td><td style="padding:6px 4px;">${l1.outfitName}</td><td style="padding:6px 4px;">${l2.outfitName}</td></tr>
-                <tr style="border-bottom:1px solid #eee;"><td style="padding:6px 4px; color:var(--text-muted);">Sự kiện</td><td style="padding:6px 4px;">${l1.eventName}</td><td style="padding:6px 4px;">${l2.eventName}</td></tr>
+                <tr style="border-bottom:1px solid #eee;"><td style="padding:6px 4px; color:var(--text-muted);">Bối cảnh diện</td><td style="padding:6px 4px;">${l1.eventName}</td><td style="padding:6px 4px;">${l2.eventName}</td></tr>
                 <tr style="border-bottom:1px solid #eee;"><td style="padding:6px 4px; color:var(--text-muted);">Vùng miền</td><td style="padding:6px 4px;">${l1.regionName}</td><td style="padding:6px 4px;">${l2.regionName}</td></tr>
                 <tr style="border-bottom:1px solid #eee;"><td style="padding:6px 4px; color:var(--text-muted);">Phong cách</td><td style="padding:6px 4px;">${l1.styleName}</td><td style="padding:6px 4px;">${l2.styleName}</td></tr>
                 <tr style="border-bottom:1px solid #eee;"><td style="padding:6px 4px; color:var(--text-muted);">Màu sắc</td><td style="padding:6px 4px;">${l1.colors.join(', ')}</td><td style="padding:6px 4px;">${l2.colors.join(', ')}</td></tr>
-                <tr style="border-bottom:1px solid #eee;"><td style="padding:6px 4px; color:var(--text-muted);">Phụ kiện</td><td style="padding:6px 4px;">${l1.accessories.join(', ') || 'Không'}</td><td style="padding:6px 4px;">${l2.accessories.join(', ') || 'Không'}</td></tr>
-                <tr style="border-bottom:1px solid #eee;"><td style="padding:6px 4px; color:var(--text-muted);">Điểm phối</td><td style="padding:6px 4px;">${s1}</td><td style="padding:6px 4px;">${s2}</td></tr>
-                <tr><td style="padding:6px 4px; color:var(--text-muted);">Cảnh báo</td><td style="padding:6px 4px;">${l1.warningsCount}</td><td style="padding:6px 4px;">${l2.warningsCount}</td></tr>
+                <tr style="border-bottom:1px solid #eee;"><td style="padding:6px 4px; color:var(--text-muted);">Phụ kiện</td><td style="padding:6px 4px;">${l1.accessories.join(', ') || 'Nguyên bản'}</td><td style="padding:6px 4px;">${l2.accessories.join(', ') || 'Nguyên bản'}</td></tr>
+                <tr style="border-bottom:1px solid #eee;"><td style="padding:6px 4px; color:var(--text-muted);">Điểm phối sắc</td><td style="padding:6px 4px;">${s1}</td><td style="padding:6px 4px;">${s2}</td></tr>
+                <tr><td style="padding:6px 4px; color:var(--text-muted);">Lưu ý văn hóa</td><td style="padding:6px 4px;">${l1.warningsCount}</td><td style="padding:6px 4px;">${l2.warningsCount}</td></tr>
             </tbody>
         </table>
     `;
@@ -160,10 +160,10 @@ function shareLook(id) {
     const item = getStoredLooks().find(l => l.id === id);
     if (!item) return;
 
-    const text = `Lookbook Việt phục Remix:\nTrang phục: ${item.outfitName}\nSự kiện: ${item.eventName}\nVùng miền: ${item.regionName}\nĐiểm hài hoà: ${item.score}/100`;
+    const text = `Di sản Cổ phục - Việt phục Remix:\nTrang phục: ${item.outfitName}\nSự kiện: ${item.eventName}\nVùng miền: ${item.regionName}\nPhụ kiện: ${item.accessories.join(', ') || 'Nguyên bản'}\nĐiểm hài hoà sắc thái: ${item.score}/100`;
 
     if (navigator.share) {
-        navigator.share({ title: 'Lookbook Cổ phục', text }).catch(() => {});
+        navigator.share({ title: 'Lookbook Cổ phục Việt', text }).catch(() => {});
     } else if (navigator.clipboard) {
         navigator.clipboard.writeText(text).then(() => showToastMsg('Đã sao chép vào bộ nhớ tạm!'));
     }
@@ -189,7 +189,7 @@ function downloadLookCard(id) {
     ctx.fillStyle = '#3B2A22';
     ctx.font = 'bold 32px "Plus Jakarta Sans", sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('Lookbook Việt phục', 300, 90);
+    ctx.fillText('Lookbook Cổ phục Việt', 300, 90);
 
     ctx.font = '16px "Plus Jakarta Sans", sans-serif';
     ctx.fillStyle = '#8E7D73';
@@ -218,16 +218,16 @@ function downloadLookCard(id) {
     ctx.fillStyle = '#3B2A22';
     ctx.fillText('Phong cách: ' + item.styleName, 300, 440);
 
-    const accText = item.accessories.length ? item.accessories.join(', ') : 'Không phụ kiện';
+    const accText = item.accessories.length ? item.accessories.join(', ') : 'Nguyên bản';
     ctx.fillText('Phụ kiện: ' + accText, 300, 480);
 
     ctx.font = 'bold 28px "Plus Jakarta Sans", sans-serif';
     ctx.fillStyle = '#C48C71';
-    ctx.fillText(`Điểm hài hoà: ${item.score}/100`, 300, 560);
+    ctx.fillText(`Điểm hài hoà sắc thái: ${item.score}/100`, 300, 560);
 
     ctx.font = '14px "Plus Jakarta Sans", sans-serif';
     ctx.fillStyle = '#8E7D73';
-    ctx.fillText('Việt phục Remix — Di sản Cổ phục Việt', 300, 720);
+    ctx.fillText('Việt phục Remix — Nền tảng Di sản Cổ phục Việt', 300, 720);
 
     const a = document.createElement('a');
     a.download = `lookbook_${item.id}.png`;

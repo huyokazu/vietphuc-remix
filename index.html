@@ -96,18 +96,18 @@
                 <div class="studio-banner anim-btn" onclick="openStudio()" style="background: linear-gradient(135deg, #F8E3D6, #E8CDBB); border-radius: var(--border-radius-md); padding: 18px 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
                     <div>
                         <h3 style="margin: 0 0 4px 0; font-size: 16px; color: var(--text-dark);">🎨 Phòng phối đồ Studio</h3>
-                        <p style="margin: 0; font-size: 12px; color: var(--text-muted);">Tự do phối màu, chọn phụ kiện & phân tích chuẩn văn hóa</p>
+                        <p style="margin: 0; font-size: 12px; color: var(--text-muted);">Tự do phối màu, phụ kiện đa tầng & thẩm định văn hóa</p>
                     </div>
                     <div style="font-size: 28px;">✨</div>
                 </div>
 
                 <div class="search-bar">
                     <span style="margin-right: 8px;">🔍</span>
-                    <input type="text" id="search-input" placeholder="Tìm kiếm trang phục..." oninput="handleSearch(this.value)">
+                    <input type="text" id="search-input" placeholder="Tìm kiếm trang phục di sản..." oninput="handleSearch(this.value)">
                 </div>
 
                 <div class="section-header">
-                    <h3>Danh mục</h3>
+                    <h3>Danh mục di sản</h3>
                 </div>
 
                 <div class="categories">
@@ -140,20 +140,19 @@
                 <div class="grid-products" id="product-list"></div>
             </div>
 
-            <!-- Bottom Navigation -->
+            <!-- Bottom Navigation: Hướng văn hóa, bỏ Giỏ hàng, thay bằng Lookbook -->
             <div class="bottom-nav">
-                <a href="javascript:void(0)" class="nav-item active anim-btn" onclick="navigateTo('collections-screen')">
-                    <span style="font-size: 20px;">🏠</span>
+                <a href="javascript:void(0)" class="nav-item active anim-btn" onclick="navigateTo('collections-screen')" title="Khám phá">
+                    <span style="font-size: 20px;">🏛️</span>
                 </a>
-                <a href="javascript:void(0)" class="nav-item anim-btn" onclick="openListModal('history')">
+                <a href="javascript:void(0)" class="nav-item anim-btn" onclick="openListModal('history')" title="Lịch sử xem">
                     <span style="font-size: 20px;">🕒</span>
                 </a>
-                <a href="javascript:void(0)" class="nav-item anim-btn" onclick="openListModal('wishlist')">
+                <a href="javascript:void(0)" class="nav-item anim-btn" onclick="openListModal('wishlist')" title="Yêu thích">
                     <span style="font-size: 20px;">❤️</span>
                 </a>
-                <a href="javascript:void(0)" class="nav-item anim-btn" onclick="openListModal('cart')" style="position: relative;">
-                    <span style="font-size: 20px;">🛍️</span>
-                    <span id="cart-badge" class="cart-badge" style="display: none;">0</span>
+                <a href="javascript:void(0)" class="nav-item anim-btn" onclick="openLookbook()" title="Lookbook của tôi">
+                    <span style="font-size: 20px;">📖</span>
                 </a>
                 <a href="javascript:void(0)" class="nav-item anim-btn" onclick="openStudio()" title="Phòng phối đồ">
                     <span style="font-size: 20px;">🎨</span>
@@ -185,7 +184,7 @@
                 </div>
 
                 <div class="accessory-section">
-                    <h4>Chọn phụ kiện phối kèm</h4>
+                    <h4>Chọn phụ kiện gợi ý phối kèm</h4>
                     <div class="accessory-pills" id="detail-accessories"></div>
                 </div>
 
@@ -201,8 +200,8 @@
                 </div>
 
                 <div class="action-bottom">
-                    <button class="btn-icon anim-btn" onclick="addToCartFromDetail()" title="Thêm vào giỏ đồ">🛍️</button>
-                    <button class="btn-primary anim-btn" onclick="showMixResult()">Xem kết quả phối đồ</button>
+                    <button class="btn-icon anim-btn" onclick="saveCurrentDetailToLookbook()" title="Lưu trang phục vào Lookbook">📖</button>
+                    <button class="btn-primary anim-btn" onclick="showMixResult()">Xem phác thảo phối đồ</button>
                 </div>
             </div>
         </div>
@@ -215,7 +214,7 @@
             </div>
 
             <div class="studio-layout">
-                <!-- Cột trái: Mockup ảnh thật, Phân tích & Công cụ -->
+                <!-- Cột trái: Mockup trực quan đa tầng, Phân tích & Công cụ -->
                 <div class="studio-col-left">
                     <div id="studio-preview" class="studio-preview-box"></div>
                     <div id="studio-harmony" class="studio-card"></div>
@@ -226,49 +225,49 @@
                         <button id="studio-suggest-btn" class="pill anim-btn" style="padding: 10px; font-weight: 600;">🪄 Gợi ý cho tôi</button>
                         <button id="studio-ai-btn" class="pill anim-btn" style="padding: 10px; font-weight: 600;">✨ AI nhận xét</button>
                         <button id="studio-save-btn" class="btn-primary anim-btn" style="padding: 10px; font-size: 13px;">💾 Lưu vào Lookbook</button>
-                        <button id="studio-lookbook-btn" class="pill anim-btn" style="padding: 10px; font-weight: 600;">📖 Lookbook của tôi</button>
+                        <button id="studio-lookbook-btn" class="pill anim-btn" style="padding: 10px; font-weight: 600;">📖 Xem Lookbook</button>
                     </div>
                 </div>
 
                 <!-- Cột phải: Các tùy chọn phối trang phục -->
                 <div class="studio-col-right">
                     <div class="studio-group">
-                        <label class="studio-group-title">Nhân vật</label>
+                        <label class="studio-group-title">Nhân vật trải nghiệm</label>
                         <div id="studio-character-options" class="studio-chips"></div>
                     </div>
 
                     <div class="studio-group">
-                        <label class="studio-group-title">Loại trang phục</label>
+                        <label class="studio-group-title">Loại trang phục cổ truyền</label>
                         <div id="studio-outfit-options" class="studio-chips"></div>
                     </div>
 
                     <div class="studio-group">
-                        <label class="studio-group-title">Sự kiện</label>
+                        <label class="studio-group-title">Sự kiện / Hoàn cảnh diện</label>
                         <div id="studio-event-options" class="studio-chips"></div>
                     </div>
 
                     <div class="studio-group">
-                        <label class="studio-group-title">Vùng miền</label>
+                        <label class="studio-group-title">Không gian vùng miền</label>
                         <div id="studio-region-options" class="studio-chips"></div>
                     </div>
 
                     <div class="studio-group">
-                        <label class="studio-group-title">Phong cách</label>
+                        <label class="studio-group-title">Phong cách thể hiện</label>
                         <div id="studio-style-options" class="studio-chips"></div>
                     </div>
 
                     <div class="studio-group">
-                        <label class="studio-group-title">Thời tiết</label>
+                        <label class="studio-group-title">Điều kiện thời tiết</label>
                         <div id="studio-weather-options" class="studio-chips"></div>
                     </div>
 
                     <div class="studio-group">
-                        <label class="studio-group-title">Màu sắc (chọn tối đa 2)</label>
+                        <label class="studio-group-title">Màu sắc cổ truyền (chọn tối đa 2 sắc thái)</label>
                         <div id="studio-color-options" class="studio-color-grid"></div>
                     </div>
 
                     <div class="studio-group">
-                        <label class="studio-group-title">Phụ kiện</label>
+                        <label class="studio-group-title">Phụ kiện đính kèm (hiển thị trực tiếp trên trang phục)</label>
                         <div id="studio-accessory-options" class="studio-chips"></div>
                     </div>
                 </div>
@@ -281,13 +280,17 @@
         <div id="mix-modal" class="modal">
             <div class="modal-content">
                 <button class="modal-close" onclick="closeModal('mix-modal')">×</button>
-                <h3>Bộ trang phục của bạn</h3>
+                <h3>Bản phác thảo phối đồ</h3>
                 <div id="mix-image-container" class="mix-image-container"></div>
                 <p id="mix-result-text"></p>
+                <div style="display: flex; gap: 8px; margin-top: 14px;">
+                    <button class="pill anim-btn" style="flex: 1; padding: 10px;" onclick="closeModal('mix-modal'); openStudio(currentItem ? currentItem.categoryId : null);">Vào Studio chỉnh sửa</button>
+                    <button class="btn-primary anim-btn" style="flex: 1; padding: 10px;" onclick="saveCurrentDetailToLookbook(); closeModal('mix-modal');">Lưu Lookbook</button>
+                </div>
             </div>
         </div>
 
-        <!-- Modal Danh sách (History / Wishlist / Cart) -->
+        <!-- Modal Danh sách (History / Wishlist) -->
         <div id="list-modal" class="modal bottom-sheet-modal">
             <div class="modal-content-sheet">
                 <div class="sheet-indicator"></div>
@@ -299,7 +302,7 @@
 
         <!-- Modal Lookbook -->
         <div id="lookbook-modal" class="modal bottom-sheet-modal">
-            <div class="modal-content-sheet" style="height: 80%;">
+            <div class="modal-content-sheet" style="height: 82%;">
                 <div class="sheet-indicator"></div>
                 <button class="modal-close modal-close-sheet" data-close="lookbook-modal">×</button>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
@@ -314,43 +317,36 @@
         <div id="compare-modal" class="modal">
             <div class="modal-content" style="max-width: 500px; width: 90%;">
                 <button class="modal-close" data-close="compare-modal">×</button>
-                <h3>So sánh bộ phối</h3>
+                <h3>So sánh cấu trúc bộ phối</h3>
                 <div id="compare-content" style="margin-top: 14px;"></div>
             </div>
         </div>
 
-        <!-- Modal Trợ lý AI (ĐÃ XÓA KHUNG NHẬP API KEY) -->
+        <!-- Modal Trợ lý AI (Bảo mật Cloudflare Proxy) -->
         <div id="ai-modal" class="modal">
             <div class="modal-content" style="max-width: 480px; width: 90%; height: 80vh; display: flex; flex-direction: column; text-align: left; padding: 20px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 8px;">
-                    <h3 style="margin: 0; font-size: 16px;">✨ Trợ lý AI Việt phục</h3>
+                    <h3 style="margin: 0; font-size: 16px;">✨ Trợ lý AI Cổ phục</h3>
                     <button class="modal-close" data-close="ai-modal" style="position: static; font-size: 20px;">×</button>
                 </div>
 
-                <!-- Gợi ý nhanh -->
                 <div id="ai-quick" style="display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px;"></div>
 
-                <!-- Khung tin nhắn -->
                 <div id="ai-messages" style="flex: 1; overflow-y: auto; background: var(--bg-color); border-radius: 12px; padding: 12px; margin-bottom: 12px;"></div>
 
-                <!-- Form gửi tin nhắn -->
                 <form id="ai-form" style="display: flex; gap: 8px;">
-                    <input type="text" id="ai-input" placeholder="Hỏi AI về cổ phục, bối cảnh, phối màu..." style="flex: 1; padding: 10px 14px; font-size: 13px; border: 1px solid rgba(0,0,0,0.1); border-radius: 20px; outline: none;">
+                    <input type="text" id="ai-input" placeholder="Hỏi AI về cổ phục, phối màu, quy tắc mặc..." style="flex: 1; padding: 10px 14px; font-size: 13px; border: 1px solid rgba(0,0,0,0.1); border-radius: 20px; outline: none;">
                     <button type="submit" class="btn-primary anim-btn" style="padding: 10px 16px; border-radius: 20px;">Gửi</button>
                 </form>
             </div>
         </div>
 
         <!-- ==================== 7. CÁC PHẦN TỬ TOÀN CỤC ==================== -->
-        <!-- Nút nổi AI -->
         <button id="ai-fab" class="ai-fab-btn anim-btn" title="Trợ lý AI Cổ phục">✨ AI</button>
-
-        <!-- Toast thông báo -->
         <div id="toast" class="toast">Đã cập nhật!</div>
-
     </div>
 
-    <!-- Scripts -->
+    <!-- Nạp kịch bản -->
     <script src="script.js"></script>
     <script src="auth.js"></script>
     <script src="studio-data.js"></script>

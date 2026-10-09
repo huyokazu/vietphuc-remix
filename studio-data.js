@@ -229,22 +229,23 @@ const STUDIO_COLORS = [
     { id: 'be_lua', name: 'Be lụa', hex: '#D2B48C', hue: 34, meaning: 'Sắc màu trung tính sang trọng, tôn vinh độ bóng mượt tự nhiên của tơ tằm.' }
 ];
 
+// Định nghĩa phụ kiện kèm vị trí gắn layer (position: head, neck, chest, waist, hand, feet) và icon trực quan
 const STUDIO_ACCESSORIES = [
-    { name: 'Khăn vấn', outfits: ['nguthan', 'cachtan', 'aotac'], note: 'Phổ biến cho nữ giới tạo nét thanh thoát đoan trang.' },
-    { name: 'Khăn vành', outfits: ['nhatbinh'], note: 'Phụ kiện cung đình Huế chỉ đội kèm áo Nhật Bình.' },
-    { name: 'Khăn xếp', outfits: ['nguthan', 'aotac'], note: 'Khăn quấn sẵn dùng cho nam giới thể hiện nét đĩnh đạc.' },
-    { name: 'Khăn mỏ quạ', outfits: ['tuthan'], note: 'Cách thắt khăn đặc trưng hình mỏ quạ của thiếu nữ Kinh Bắc.' },
-    { name: 'Nón lá', outfits: ['nguthan', 'cachtan', 'aotac', 'tuthan'], note: 'Vật dụng thân thuộc che nghiêng nét duyên truyền thống.' },
-    { name: 'Nón quai thao', outfits: ['tuthan'], note: 'Chiếc nón tròn lớn kết hợp áo tứ thân trẩy hội mùa xuân.' },
-    { name: 'Quạt xếp', outfits: ['nguthan', 'aotac', 'nhatbinh', 'giaolinh', 'cachtan'], note: 'Vừa tạo điểm nhấn tay cầm, vừa làm duyên khi giao tiếp.' },
-    { name: 'Guốc mộc', outfits: ['nguthan', 'aotac', 'tuthan', 'cachtan', 'giaolinh'], note: 'Âm thanh gõ nhịp quen thuộc trên thềm đá cổ kính.' },
-    { name: 'Hài thêu', outfits: ['nhatbinh', 'aotac'], note: 'Hài mũi cong thêu hoa văn tinh xảo dành cho dịp trọng thể.' },
-    { name: 'Túi gấm', outfits: ['nguthan', 'aotac', 'nhatbinh', 'cachtan'], note: 'Túi thơm thêu tay nhỏ gọn mang bên hông tà áo.' },
-    { name: 'Trâm cài', outfits: ['nhatbinh', 'tuthan', 'nguthan'], note: 'Điểm xuyết trên búi tóc giữ nét đài các, yêu kiều.' },
-    { name: 'Kiềng cổ', outfits: ['cachtan', 'tuthan', 'nguthan'], note: 'Kiềng bạc hoặc vàng tôn đường nét cổ cao thanh tú.' },
-    { name: 'Ngọc bội', outfits: ['aotac', 'giaolinh', 'nhatbinh'], note: 'Biểu tượng phẩm hạnh của người quân tử và mệnh phụ.' },
-    { name: 'Yếm lót', outfits: ['tuthan'], note: 'Nội y truyền thống mặc lót bên trong áo tứ thân.' },
-    { name: 'Thắt lưng bao', outfits: ['tuthan'], note: 'Dải lụa mềm buộc ngang eo buông rủ hai đầu tà áo.' }
+    { name: 'Khăn vấn', position: 'head', icon: '👑', outfits: ['nguthan', 'cachtan', 'aotac'], note: 'Phổ biến cho nữ giới tạo nét thanh thoát đoan trang.' },
+    { name: 'Khăn vành', position: 'head', icon: '🪡', outfits: ['nhatbinh'], note: 'Phụ kiện cung đình Huế chỉ đội kèm áo Nhật Bình.' },
+    { name: 'Khăn xếp', position: 'head', icon: '🎩', outfits: ['nguthan', 'aotac'], note: 'Khăn quấn sẵn dùng cho nam giới thể hiện nét đĩnh đạc.' },
+    { name: 'Khăn mỏ quạ', position: 'head', icon: '🧣', outfits: ['tuthan'], note: 'Cách thắt khăn đặc trưng hình mỏ quạ của thiếu nữ Kinh Bắc.' },
+    { name: 'Nón lá', position: 'head', icon: '👒', outfits: ['nguthan', 'cachtan', 'aotac', 'tuthan'], note: 'Vật dụng thân thuộc che nghiêng nét duyên truyền thống.' },
+    { name: 'Nón quai thao', position: 'head', icon: '🌸', outfits: ['tuthan'], note: 'Chiếc nón tròn lớn kết hợp áo tứ thân trẩy hội mùa xuân.' },
+    { name: 'Quạt xếp', position: 'hand', icon: '🪭', outfits: ['nguthan', 'aotac', 'nhatbinh', 'giaolinh', 'cachtan'], note: 'Vừa tạo điểm nhấn tay cầm, vừa làm duyên khi giao tiếp.' },
+    { name: 'Guốc mộc', position: 'feet', icon: '👡', outfits: ['nguthan', 'aotac', 'tuthan', 'cachtan', 'giaolinh'], note: 'Âm thanh gõ nhịp quen thuộc trên thềm đá cổ kính.' },
+    { name: 'Hài thêu', position: 'feet', icon: '👠', outfits: ['nhatbinh', 'aotac'], note: 'Hài mũi cong thêu hoa văn tinh xảo dành cho dịp trọng thể.' },
+    { name: 'Túi gấm', position: 'waist', icon: '👛', outfits: ['nguthan', 'aotac', 'nhatbinh', 'cachtan'], note: 'Túi thơm thêu tay nhỏ gọn mang bên hông tà áo.' },
+    { name: 'Trâm cài', position: 'head', icon: '✨', outfits: ['nhatbinh', 'tuthan', 'nguthan'], note: 'Điểm xuyết trên búi tóc giữ nét đài các, yêu kiều.' },
+    { name: 'Kiềng cổ', position: 'neck', icon: '📿', outfits: ['cachtan', 'tuthan', 'nguthan'], note: 'Kiềng bạc hoặc vàng tôn đường nét cổ cao thanh tú.' },
+    { name: 'Ngọc bội', position: 'waist', icon: '🟢', outfits: ['aotac', 'giaolinh', 'nhatbinh'], note: 'Biểu tượng phẩm hạnh của người quân tử và mệnh phụ.' },
+    { name: 'Yếm lót', position: 'chest', icon: '🎽', outfits: ['tuthan'], note: 'Nội y truyền thống mặc lót bên trong áo tứ thân.' },
+    { name: 'Thắt lưng bao', position: 'waist', icon: '🎗️', outfits: ['tuthan'], note: 'Dải lụa mềm buộc ngang eo buông rủ hai đầu tà áo.' }
 ];
 
 const CULTURE_RULES = [

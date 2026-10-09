@@ -475,23 +475,6 @@ body {
     color: var(--primary-color);
 }
 
-.cart-badge {
-    position: absolute;
-    top: -5px;
-    right: -8px;
-    background-color: var(--danger-color);
-    color: #FFFFFF;
-    border-radius: 10px;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 6px;
-    border: 2px solid #FFFFFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 18px;
-}
-
 /* ================= DETAIL SCREEN ================= */
 #detail-screen {
     background: #E8CDBB;

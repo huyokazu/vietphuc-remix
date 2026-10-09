@@ -1,6 +1,6 @@
 // ================= TRỢ LÝ AI VIỆT PHỤC (ai.js) =================
 
-// Thay thế đường dẫn này bằng URL Worker thực tế của bạn sau khi deploy lên Cloudflare
+// Thay thế URL Worker thực tế của bạn đã deploy trên Cloudflare
 const AI_PROXY_URL = "https://vietphuc-ai.ongtraudo.workers.dev/chat";
 
 const aiConversationHistory = [];
@@ -69,7 +69,7 @@ function openAiModal() {
 
     const container = document.getElementById("ai-messages");
     if (container && container.children.length === 0) {
-        appendMessage("model", "Xin chào! Mình là trợ lý ảo Việt phục. Bạn muốn tìm hiểu hay phối đồ cho dịp nào hôm nay?");
+        appendMessage("model", "Xin chào! Mình là trợ lý ảo Việt phục. Bạn muốn tìm hiểu lịch sử, bối cảnh mặc hay gợi ý phối đồ cho sự kiện nào?");
     }
 }
 
@@ -127,9 +127,9 @@ async function callGemini(userText) {
             if (response.status === 403) {
                 errorMsg = "Không có quyền truy cập (Chỉ hỗ trợ từ domain được cấp phép).";
             } else if (response.status === 429) {
-                errorMsg = "Hệ thống đang quá tải hoặc hết hạn mức yêu cầu. Vui lòng thử lại sau giây lát.";
+                errorMsg = "Hệ thống đang bận hoặc vượt quá giới hạn yêu cầu. Vui lòng thử lại sau giây lát.";
             } else if (response.status >= 500) {
-                errorMsg = "Máy chủ proxy gặp sự cố kỹ thuật. Vui lòng kiểm tra lại cấu hình.";
+                errorMsg = "Máy chủ proxy AI gặp sự cố kỹ thuật. Vui lòng kiểm tra lại cấu hình.";
             }
 
             appendMessage("model", `⚠️ ${errorMsg}`);
@@ -148,7 +148,7 @@ async function callGemini(userText) {
     } catch (err) {
         const loadingElem = document.getElementById(loadingId);
         if (loadingElem) loadingElem.remove();
-        appendMessage("model", "⚠️ Không thể kết nối với máy chủ proxy. Vui lòng kiểm tra kết nối mạng hoặc đường dẫn Worker.");
+        appendMessage("model", "⚠️ Không thể kết nối với máy chủ proxy AI. Vui lòng kiểm tra kết nối mạng hoặc cấu hình Worker.");
         aiConversationHistory.pop();
     }
 }
@@ -156,7 +156,7 @@ async function callGemini(userText) {
 window.aiReviewLook = function (look) {
     if (!look) return;
     openAiModal();
-    const accStr = look.accessories && look.accessories.length > 0 ? look.accessories.join(", ") : "Không có";
+    const accStr = look.accessories && look.accessories.length > 0 ? look.accessories.join(", ") : "Nguyên bản";
     const colorsStr = look.colors && look.colors.length > 0 ? look.colors.join(", ") : "Chưa chọn";
     const prompt = `Nhận xét giúp mình bộ trang phục này:
 - Loại áo: ${look.outfitName || "Chưa rõ"}

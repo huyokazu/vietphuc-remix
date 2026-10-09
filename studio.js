@@ -23,7 +23,7 @@ let studioState = {
     weather: 'mat_me',
     character: 'nu',
     colors: ['#B22222', '#D2B48C'],
-    accessories: []
+    accessories: ['Khăn vấn']
 };
 
 function renderChips(containerId, items, stateKey, onChange) {
@@ -86,7 +86,7 @@ function renderAccessoryOptions() {
         btn.type = 'button';
         const isSelected = studioState.accessories.includes(acc.name);
         btn.className = `pill anim-btn ${isSelected ? 'active' : ''}`;
-        btn.innerText = acc.name;
+        btn.innerHTML = `${acc.icon || '✨'} ${acc.name}`;
         btn.onclick = () => {
             if (isSelected) {
                 studioState.accessories = studioState.accessories.filter(a => a !== acc.name);
@@ -100,12 +100,11 @@ function renderAccessoryOptions() {
     });
 }
 
-// 1. NÂNG CẤP PHÒNG THAY ĐỒ: HIỂN THỊ MOCKUP ẢNH THẬT HOÀN CHỈNH (FULL-LOOK)
+// 2. KHẮC PHỤC LỖI HIỂN THỊ PHỤ KIỆN: HIỂN THỊ CÁC LỚP PHỤ KIỆN ĐÈ LÊN MOCKUP TRANG PHỤC THỰC TẾ
 function renderPreview() {
     const container = document.getElementById('studio-preview');
     if (!container) return;
 
-    // Tìm một mẫu ảnh thật hoàn chỉnh từ kho dữ liệu outfits khớp với loại áo đang chọn
     let matchedItem = null;
     if (typeof outfits !== 'undefined' && outfits.length > 0) {
         matchedItem = outfits.find(o => o.categoryId === studioState.outfit);
@@ -119,27 +118,51 @@ function renderPreview() {
     const c1 = studioState.colors[0] || '#C48C71';
     const c2 = studioState.colors[1] || c1;
 
-    const accTags = studioState.accessories.length > 0 
-        ? studioState.accessories.map(a => `<span class="pill" style="font-size:11px; padding:3px 8px; background:#fff;">${a}</span>`).join(' ')
-        : '<span style="font-size:11px; color:var(--text-muted);">Chưa chọn phụ kiện</span>';
+    // Tạo các lớp phủ phụ kiện trực quan dựa trên vị trí giải phẫu
+    let accessoryLayersHtml = '';
+    if (typeof STUDIO_ACCESSORIES !== 'undefined') {
+        studioState.accessories.forEach(accName => {
+            const accMeta = STUDIO_ACCESSORIES.find(a => a.name === accName);
+            if (accMeta) {
+                const posClass = `layer-${accMeta.position}`;
+                accessoryLayersHtml += `
+                    <div class="accessory-layer ${posClass}">
+                        <span>${accMeta.icon} ${accMeta.name}</span>
+                    </div>
+                `;
+            }
+        });
+    }
+
+    // Danh sách tag phụ kiện đã trang bị
+    const equippedBadges = studioState.accessories.length > 0
+        ? studioState.accessories.map(a => {
+            const accMeta = typeof STUDIO_ACCESSORIES !== 'undefined' ? STUDIO_ACCESSORIES.find(item => item.name === a) : null;
+            return `<span class="pill" style="font-size:11px; padding:3px 9px; background:#fff; border:1px solid var(--primary-light);">${accMeta ? accMeta.icon : '✨'} ${a}</span>`;
+        }).join(' ')
+        : '<span style="font-size:12px; color:var(--text-muted); font-style:italic;">Chưa chọn phụ kiện trang trí nào</span>';
 
     container.innerHTML = `
         <div style="display:flex; flex-direction:column; align-items:center; width:100%;">
-            <div style="position:relative; width:180px; aspect-ratio:3/4; border-radius:var(--border-radius-md); overflow:hidden; box-shadow:0 10px 24px rgba(59,42,34,0.15); background:var(--bg-color); display:flex; justify-content:center; align-items:center;">
+            <div class="studio-mockup-wrapper">
                 <div id="studio-real-photo-box" style="width:100%; height:100%;"></div>
                 
-                <!-- Huy hiệu bảng màu đang phối -->
-                <div style="position:absolute; bottom:8px; right:8px; display:flex; gap:4px; background:rgba(255,255,255,0.85); padding:3px 6px; border-radius:12px; backdrop-filter:blur(4px);">
-                    <span style="width:14px; height:14px; border-radius:50%; background:${c1}; border:1px solid #fff; display:inline-block;"></span>
-                    <span style="width:14px; height:14px; border-radius:50%; background:${c2}; border:1px solid #fff; display:inline-block;"></span>
+                <!-- Các lớp phủ trực quan hiển thị trực tiếp lên hình mẫu -->
+                ${accessoryLayersHtml}
+
+                <!-- Huy hiệu phối màu thực tế -->
+                <div style="position:absolute; bottom:8px; right:8px; display:flex; gap:4px; background:rgba(255,255,255,0.85); padding:3px 6px; border-radius:12px; backdrop-filter:blur(4px); z-index: 15;">
+                    <span style="width:14px; height:14px; border-radius:50%; background:${c1}; border:1px solid #fff; display:inline-block;" title="Màu chính"></span>
+                    <span style="width:14px; height:14px; border-radius:50%; background:${c2}; border:1px solid #fff; display:inline-block;" title="Màu nhấn"></span>
                 </div>
             </div>
 
-            <div style="margin-top:12px; text-align:center;">
-                <strong style="font-size:14px; color:var(--text-dark);">${outfitDisplayName}</strong>
-                <p style="margin:2px 0 8px 0; font-size:11px; color:var(--text-muted);">${matchedItem ? matchedItem.name : 'Mockup chuẩn truyền thống'}</p>
-                <div style="display:flex; gap:4px; flex-wrap:wrap; justify-content:center;">
-                    ${accTags}
+            <div style="margin-top:14px; text-align:center; width: 100%;">
+                <strong style="font-size:15px; color:var(--text-dark);">${outfitDisplayName}</strong>
+                <p style="margin:2px 0 8px 0; font-size:11px; color:var(--text-muted);">${matchedItem ? matchedItem.name : 'Di sản Cổ phục Việt Nam'}</p>
+                <div style="font-size:12px; font-weight:600; color:var(--text-dark); margin-bottom:6px;">Phụ kiện đã phối kèm:</div>
+                <div style="display:flex; gap:6px; flex-wrap:wrap; justify-content:center;">
+                    ${equippedBadges}
                 </div>
             </div>
         </div>
@@ -151,8 +174,7 @@ function renderPreview() {
             const imgEl = document.createElement('img');
             imgEl.src = matchedItem.img;
             imgEl.alt = matchedItem.name;
-            imgEl.className = 'real-img';
-            imgEl.style.cssText = 'width:100%; height:100%; object-fit:cover;';
+            imgEl.className = 'studio-base-img';
             imgEl.addEventListener('error', () => {
                 photoBox.innerHTML = matchedItem.svg || (curOutfitInfo ? curOutfitInfo.svg : '');
             });
@@ -238,7 +260,7 @@ function checkCulture() {
     });
 
     if (warnings.length === 0) {
-        el.innerHTML = '<div style="font-size:12px; color:#2E8B57;">✓ Bản phối chuẩn mực văn hoá, không ghi nhận lưu ý xung đột.</div>';
+        el.innerHTML = '<div style="font-size:12px; color:#2E8B57;">✓ Bản phối chuẩn mực văn hoá, không ghi nhận xung đột lễ nghi.</div>';
     } else {
         warnings.forEach(w => {
             const div = document.createElement('div');
@@ -258,8 +280,8 @@ function renderResultCard() {
 
     el.innerHTML = `
         <div style="font-size:13px; line-height:1.5;">
-            ${curEvent ? `<div style="margin-bottom:4px;">💡 <strong>Bối cảnh:</strong> ${curEvent.tip}</div>` : ''}
-            ${curWeather ? `<div style="margin-bottom:4px;">🌤️ <strong>Thời tiết (${curWeather.name}):</strong> ${curWeather.suggestion} (Vải: ${curWeather.fabrics}).</div>` : ''}
+            ${curEvent ? `<div style="margin-bottom:4px;">💡 <strong>Bối cảnh (${curEvent.name}):</strong> ${curEvent.tip}</div>` : ''}
+            ${curWeather ? `<div style="margin-bottom:4px;">🌤️ <strong>Thời tiết (${curWeather.name}):</strong> ${curWeather.suggestion} (Chất liệu khuyên dùng: ${curWeather.fabrics}).</div>` : ''}
             ${curRegion ? `<div>📍 <strong>Vùng miền (${curRegion.name}):</strong> ${curRegion.note}</div>` : ''}
         </div>
     `;
