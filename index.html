@@ -7,214 +7,186 @@
     <!-- Google Fonts: Sans-serif hiện đại, thanh lịch -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="features.css">
 </head>
 <body>
     <div class="app-container">
         
-        <!-- ==================== MÀN HÌNH LOGIN ==================== -->
+        <!-- ==================== 1. MÀN HÌNH ĐĂNG NHẬP ==================== -->
         <div id="login-screen" class="screen active">
             <div class="auth-wrapper">
                 <div class="auth-header">
-                    <div class="logo-icon">
-                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="50" cy="50" r="50" fill="#C48C71"/>
-                            <path d="M 25 50 L 50 25 L 75 50 L 50 75 Z" fill="#fff" opacity="0.9"/>
-                        </svg>
-                    </div>
+                    <div class="logo-icon">👑</div>
                     <h1>Việt phục Remix</h1>
                     <p>Khám phá di sản, định hình phong cách</p>
                 </div>
 
-                <div class="auth-form">
+                <form id="login-form" class="auth-form">
                     <div class="input-group">
-                        <label>Email</label>
-                        <input type="email" placeholder="student@example.edu.vn">
+                        <label for="login-username">Tên đăng nhập</label>
+                        <input type="text" id="login-username" placeholder="Nhập tên đăng nhập" required autocomplete="username">
                     </div>
                     <div class="input-group">
-                        <label>Mật khẩu</label>
-                        <input type="password" placeholder="••••••••">
+                        <label for="login-password">Mật khẩu</label>
+                        <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
                     </div>
-                    <button class="btn-primary auth-submit anim-btn" onclick="navigateTo('collections-screen')">Đăng nhập</button>
-                </div>
+                    <div id="login-error" class="auth-error-msg" style="display: none; color: #c0392b; font-size: 13px;"></div>
+                    <button type="submit" class="btn-primary auth-submit anim-btn">Đăng nhập</button>
+                </form>
 
-                <div class="auth-divider">
-                    <span>Hoặc tiếp tục với</span>
-                </div>
-
-                <div class="social-login">
-                    <button class="btn-social anim-btn" onclick="navigateTo('collections-screen')">
-                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                        </svg>
-                        Google
-                    </button>
-                    <button class="btn-social anim-btn" onclick="navigateTo('collections-screen')">
-                        <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2"/>
-                            <path d="M16.671 15.542l.532-3.469h-3.328V9.823c0-.949.465-1.874 1.956-1.874h1.514V5.011s-1.374-.235-2.686-.235c-2.741 0-4.533 1.662-4.533 4.669v2.628H7.078v3.469h3.047v8.385a12.09 12.09 0 003.75 0v-8.385h2.796z" fill="#ffffff"/>
-                        </svg>
-                        Facebook
-                    </button>
+                <div class="auth-footer" style="text-align: center; margin-top: 16px;">
+                    <span style="font-size: 13px; color: var(--text-muted);">Chưa có tài khoản? </span>
+                    <a href="javascript:void(0)" onclick="showAuthScreen('register')" style="font-size: 13px; font-weight: 600; color: var(--primary-color);">Đăng ký</a>
                 </div>
             </div>
         </div>
 
-        <!-- ==================== MÀN HÌNH BỘ SƯU TẬP ==================== -->
+        <!-- ==================== 2. MÀN HÌNH ĐĂNG KÝ ==================== -->
+        <div id="register-screen" class="screen">
+            <div class="auth-wrapper">
+                <div class="auth-header">
+                    <div class="logo-icon">🌿</div>
+                    <h1>Tạo tài khoản</h1>
+                    <p>Đồng hành cùng di sản Cổ phục Việt</p>
+                </div>
+
+                <form id="register-form" class="auth-form">
+                    <div class="input-group">
+                        <label for="reg-name">Họ và tên</label>
+                        <input type="text" id="reg-name" placeholder="Nguyễn Văn A" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="reg-username">Tên đăng nhập</label>
+                        <input type="text" id="reg-username" placeholder="nguyenvana (3–20 ký tự)" required autocomplete="username">
+                    </div>
+                    <div class="input-group">
+                        <label for="reg-password">Mật khẩu</label>
+                        <input type="password" id="reg-password" placeholder="Tối thiểu 6 ký tự" required autocomplete="new-password">
+                    </div>
+                    <div class="input-group">
+                        <label for="reg-confirm">Xác nhận mật khẩu</label>
+                        <input type="password" id="reg-confirm" placeholder="••••••••" required autocomplete="new-password">
+                    </div>
+                    <div id="register-error" class="auth-error-msg" style="display: none; color: #c0392b; font-size: 13px;"></div>
+                    <button type="submit" class="btn-primary auth-submit anim-btn">Tạo tài khoản</button>
+                </form>
+
+                <div class="auth-footer" style="text-align: center; margin-top: 16px;">
+                    <span style="font-size: 13px; color: var(--text-muted);">Đã có tài khoản? </span>
+                    <a href="javascript:void(0)" onclick="showAuthScreen('login')" style="font-size: 13px; font-weight: 600; color: var(--primary-color);">Đăng nhập</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 3. MÀN HÌNH BỘ SƯU TẬP ==================== -->
         <div id="collections-screen" class="screen">
             <div class="scroll-content">
-                <div class="header">
+                <div class="header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                     <div class="user-info">
-                        <div class="avatar anim-btn">
-                            <svg viewBox="0 0 40 40">
-                                <circle cx="20" cy="20" r="20" fill="#D5A992"/>
-                                <circle cx="20" cy="15" r="7" fill="#fff"/>
-                                <path d="M 8 35 Q 20 25 32 35" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
-                            </svg>
-                        </div>
+                        <div class="avatar anim-btn" style="display: flex; justify-content: center; align-items: center; font-size: 20px;">👤</div>
                         <div class="greeting">
                             <span class="hi">Xin chào,</span>
-                            <span class="name">Thế hệ trẻ yêu Cổ phục</span>
+                            <span class="name" id="user-display-name">Người Yêu Cổ Phục</span>
                         </div>
                     </div>
+                    <button id="logout-btn" class="pill anim-btn" style="padding: 6px 12px; font-size: 12px; background: #fff; border: 1px solid rgba(0,0,0,0.1); cursor: pointer;">Đăng xuất</button>
+                </div>
+
+                <!-- Banner Phòng phối đồ -->
+                <div class="studio-banner anim-btn" onclick="openStudio()" style="background: linear-gradient(135deg, #F8E3D6, #E8CDBB); border-radius: var(--border-radius-md); padding: 18px 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+                    <div>
+                        <h3 style="margin: 0 0 4px 0; font-size: 16px; color: var(--text-dark);">🎨 Phòng phối đồ Studio</h3>
+                        <p style="margin: 0; font-size: 12px; color: var(--text-muted);">Tự do phối màu, chọn phụ kiện & phân tích chuẩn văn hóa</p>
+                    </div>
+                    <div style="font-size: 28px;">✨</div>
                 </div>
 
                 <div class="search-bar">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a08b7e" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
+                    <span style="margin-right: 8px;">🔍</span>
                     <input type="text" id="search-input" placeholder="Tìm kiếm trang phục..." oninput="handleSearch(this.value)">
                 </div>
 
                 <div class="section-header">
-                    <h3>Danh mục trang phục</h3>
+                    <h3>Danh mục</h3>
                 </div>
 
                 <div class="categories">
                     <div class="category active anim-btn" id="cat-all" onclick="setCategory('all')">
-                        <div class="cat-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="7" height="7"></rect>
-                                <rect x="14" y="3" width="7" height="7"></rect>
-                                <rect x="14" y="14" width="7" height="7"></rect>
-                                <rect x="3" y="14" width="7" height="7"></rect>
-                            </svg>
-                        </div>
+                        <div class="cat-icon">🏛️</div>
                         <span>Tất cả</span>
                     </div>
                     <div class="category anim-btn" id="cat-nguthan" onclick="setCategory('nguthan')">
-                        <div class="cat-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20.38 3.46L16 2a8 8 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 002-2V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z"></path>
-                            </svg>
-                        </div>
+                        <div class="cat-icon">👘</div>
                         <span>Ngũ thân</span>
                     </div>
                     <div class="category anim-btn" id="cat-aotac" onclick="setCategory('aotac')">
-                        <div class="cat-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 10v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10"></path>
-                                <polyline points="2 6 12 2 22 6"></polyline>
-                                <path d="M12 2v20"></path>
-                            </svg>
-                        </div>
+                        <div class="cat-icon">🏮</div>
                         <span>Áo tấc</span>
                     </div>
                     <div class="category anim-btn" id="cat-nhatbinh" onclick="setCategory('nhatbinh')">
-                        <div class="cat-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                                <polyline points="2 17 12 22 22 17"></polyline>
-                                <polyline points="2 12 17 22 12"></polyline>
-                            </svg>
-                        </div>
+                        <div class="cat-icon">👑</div>
                         <span>Nhật Bình</span>
                     </div>
                     <div class="category anim-btn" id="cat-giaolinh" onclick="setCategory('giaolinh')">
-                        <div class="cat-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4l16 16M20 4L4 20"></path>
-                            </svg>
-                        </div>
+                        <div class="cat-icon">📜</div>
                         <span>Giao Lĩnh</span>
                     </div>
                     <div class="category anim-btn" id="cat-cachtan" onclick="setCategory('cachtan')">
-                        <div class="cat-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M2 12L12 2L22 12L12 22L2 12Z"></path>
-                            </svg>
-                        </div>
+                        <div class="cat-icon">✨</div>
                         <span>Cách tân</span>
                     </div>
                 </div>
 
-                <!-- Lưới 30 sản phẩm render từ JS -->
                 <div class="grid-products" id="product-list"></div>
             </div>
 
-            <!-- Thanh điều hướng dưới/trên (đúng thứ tự: Trang chủ, Lịch sử, Yêu thích, Giỏ đồ) -->
+            <!-- Bottom Navigation (5 mục: Trang chủ, Lịch sử, Yêu thích, Giỏ đồ, Phối đồ) -->
             <div class="bottom-nav">
                 <a href="javascript:void(0)" class="nav-item active anim-btn" onclick="navigateTo('collections-screen')">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                    </svg>
+                    <span style="font-size: 20px;">🏠</span>
                 </a>
                 <a href="javascript:void(0)" class="nav-item anim-btn" onclick="openListModal('history')">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                    </svg>
+                    <span style="font-size: 20px;">🕒</span>
                 </a>
                 <a href="javascript:void(0)" class="nav-item anim-btn" onclick="openListModal('wishlist')">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                    </svg>
+                    <span style="font-size: 20px;">❤️</span>
                 </a>
                 <a href="javascript:void(0)" class="nav-item anim-btn" onclick="openListModal('cart')" style="position: relative;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <path d="M16 10a4 4 0 0 1-8 0"></path>
-                    </svg>
+                    <span style="font-size: 20px;">🛍️</span>
                     <span id="cart-badge" class="cart-badge" style="display: none;">0</span>
+                </a>
+                <a href="javascript:void(0)" class="nav-item anim-btn" onclick="openStudio()" title="Phòng phối đồ">
+                    <span style="font-size: 20px;">🎨</span>
                 </a>
             </div>
         </div>
 
-        <!-- ==================== MÀN HÌNH CHI TIẾT ==================== -->
+        <!-- ==================== 4. MÀN HÌNH CHI TIẾT ==================== -->
         <div id="detail-screen" class="screen">
             <div class="detail-header-overlay">
-                <button class="back-btn anim-btn" onclick="navigateTo('collections-screen')">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                    </svg>
-                </button>
+                <button class="back-btn anim-btn" onclick="navigateTo('collections-screen')">←</button>
                 <button class="fav-btn anim-btn" onclick="toggleWishlistFromDetail(event)">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="detail-heart-icon">
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                    </svg>
+                    <span id="detail-heart-icon" style="font-size: 20px;">🤍</span>
                 </button>
             </div>
             
-            <div class="detail-image-container" id="detail-image">
-                <!-- Wrapper ảnh và Fallback SVG render bởi JS -->
-            </div>
+            <div class="detail-image-container" id="detail-image"></div>
 
             <div class="bottom-sheet">
                 <div class="sheet-indicator"></div>
-                <div class="title-row">
-                    <h2 id="detail-title">Tên trang phục</h2>
+                <div class="title-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h2 id="detail-title" style="margin: 0;">Tên trang phục</h2>
+                </div>
+
+                <!-- Thao tác mở rộng: Studio & AI -->
+                <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                    <button class="pill anim-btn" style="flex: 1; padding: 8px 12px; font-size: 12px; background: var(--bg-color); border: 1px solid var(--primary-light); cursor: pointer;" onclick="openStudio(currentItem ? currentItem.categoryId : null)">🎨 Mở trong Phòng phối đồ</button>
+                    <button id="detail-ai-btn" class="pill anim-btn" style="flex: 1; padding: 8px 12px; font-size: 12px; background: var(--bg-color); border: 1px solid var(--primary-light); cursor: pointer;">✨ Hỏi AI về trang phục này</button>
                 </div>
 
                 <div class="accessory-section">
                     <h4>Chọn phụ kiện phối kèm</h4>
-                    <div class="accessory-pills" id="detail-accessories">
-                        <!-- Danh sách pill phụ kiện render bởi JS -->
-                    </div>
+                    <div class="accessory-pills" id="detail-accessories"></div>
                 </div>
 
                 <div class="info-tabs">
@@ -225,26 +197,87 @@
                 </div>
 
                 <div class="description-content">
-                    <p id="detail-description">Mô tả sẽ hiển thị ở đây...</p>
+                    <p id="detail-description">Mô tả hiển thị ở đây...</p>
                 </div>
 
                 <div class="action-bottom">
-                    <button class="btn-icon anim-btn" onclick="addToCartFromDetail()" title="Thêm vào giỏ đồ">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                            <line x1="3" y1="6" x2="21" y2="6"></line>
-                            <path d="M12 10v6"></path>
-                            <path d="M9 13h6"></path>
-                        </svg>
-                    </button>
+                    <button class="btn-icon anim-btn" onclick="addToCartFromDetail()" title="Thêm vào giỏ đồ">🛍️</button>
                     <button class="btn-primary anim-btn" onclick="showMixResult()">Xem kết quả phối đồ</button>
                 </div>
             </div>
         </div>
 
-        <!-- ==================== CÁC MODAL CHỨC NĂNG ==================== -->
-        
-        <!-- Modal 1: Kết quả Phối Đồ -->
+        <!-- ==================== 5. MÀN HÌNH PHÒNG PHỐI ĐỒ (STUDIO) ==================== -->
+        <div id="studio-screen" class="screen">
+            <div class="studio-navbar" style="display: flex; align-items: center; gap: 12px; padding: 20px 24px; border-bottom: 1px solid rgba(0,0,0,0.05);">
+                <button class="back-btn anim-btn" onclick="navigateTo('collections-screen')" style="border: none; background: #fff; width: 36px; height: 36px; border-radius: 50%; cursor: pointer;">←</button>
+                <h2 style="margin: 0; font-size: 18px; color: var(--text-dark);">Phòng phối đồ Studio</h2>
+            </div>
+
+            <div class="studio-layout">
+                <!-- Cột trái: Mockup, Phân tích & Công cụ -->
+                <div class="studio-col-left">
+                    <div id="studio-preview" class="studio-preview-box"></div>
+                    <div id="studio-harmony" class="studio-card"></div>
+                    <div id="studio-warnings" class="studio-card"></div>
+                    <div id="studio-result-card" class="studio-card"></div>
+                    
+                    <div class="studio-actions-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px;">
+                        <button id="studio-suggest-btn" class="pill anim-btn" style="padding: 10px; font-weight: 600;">🪄 Gợi ý cho tôi</button>
+                        <button id="studio-ai-btn" class="pill anim-btn" style="padding: 10px; font-weight: 600;">✨ AI nhận xét</button>
+                        <button id="studio-save-btn" class="btn-primary anim-btn" style="padding: 10px; font-size: 13px;">💾 Lưu vào Lookbook</button>
+                        <button id="studio-lookbook-btn" class="pill anim-btn" style="padding: 10px; font-weight: 600;">📖 Lookbook của tôi</button>
+                    </div>
+                </div>
+
+                <!-- Cột phải: Các tùy chọn phối trang phục -->
+                <div class="studio-col-right">
+                    <div class="studio-group">
+                        <label class="studio-group-title">Nhân vật</label>
+                        <div id="studio-character-options" class="studio-chips"></div>
+                    </div>
+
+                    <div class="studio-group">
+                        <label class="studio-group-title">Loại trang phục</label>
+                        <div id="studio-outfit-options" class="studio-chips"></div>
+                    </div>
+
+                    <div class="studio-group">
+                        <label class="studio-group-title">Sự kiện</label>
+                        <div id="studio-event-options" class="studio-chips"></div>
+                    </div>
+
+                    <div class="studio-group">
+                        <label class="studio-group-title">Vùng miền</label>
+                        <div id="studio-region-options" class="studio-chips"></div>
+                    </div>
+
+                    <div class="studio-group">
+                        <label class="studio-group-title">Phong cách</label>
+                        <div id="studio-style-options" class="studio-chips"></div>
+                    </div>
+
+                    <div class="studio-group">
+                        <label class="studio-group-title">Thời tiết</label>
+                        <div id="studio-weather-options" class="studio-chips"></div>
+                    </div>
+
+                    <div class="studio-group">
+                        <label class="studio-group-title">Màu sắc (chọn tối đa 2)</label>
+                        <div id="studio-color-options" class="studio-color-grid"></div>
+                    </div>
+
+                    <div class="studio-group">
+                        <label class="studio-group-title">Phụ kiện</label>
+                        <div id="studio-accessory-options" class="studio-chips"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 6. CÁC MODAL HỆ THỐNG ==================== -->
+
+        <!-- Modal Phối đồ (Màn chi tiết) -->
         <div id="mix-modal" class="modal">
             <div class="modal-content">
                 <button class="modal-close" onclick="closeModal('mix-modal')">×</button>
@@ -254,19 +287,85 @@
             </div>
         </div>
 
-        <!-- Modal 2: Danh sách Lịch sử / Yêu thích / Giỏ đồ -->
+        <!-- Modal Danh sách (History / Wishlist / Cart) -->
         <div id="list-modal" class="modal bottom-sheet-modal">
             <div class="modal-content-sheet">
                 <div class="sheet-indicator"></div>
                 <button class="modal-close-sheet" onclick="closeModal('list-modal')">×</button>
                 <h3 id="list-modal-title">Tiêu đề</h3>
-                <div id="list-modal-content" class="list-modal-items">
-                    <!-- Danh sách mục tương ứng render bởi JS -->
-                </div>
+                <div id="list-modal-content" class="list-modal-items"></div>
             </div>
         </div>
 
+        <!-- Modal Lookbook -->
+        <div id="lookbook-modal" class="modal bottom-sheet-modal">
+            <div class="modal-content-sheet" style="height: 80%;">
+                <div class="sheet-indicator"></div>
+                <button class="modal-close modal-close-sheet" data-close="lookbook-modal">×</button>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                    <h3 style="margin: 0;">Lookbook Việt phục</h3>
+                    <button id="compare-btn" class="pill anim-btn" style="padding: 6px 14px; font-size: 12px; background: var(--primary-color); color: #fff; border: none; cursor: pointer;">⚖️ So sánh 2 bộ đã chọn</button>
+                </div>
+                <div id="lookbook-content" class="list-modal-items"></div>
+            </div>
+        </div>
+
+        <!-- Modal So sánh Lookbook -->
+        <div id="compare-modal" class="modal">
+            <div class="modal-content" style="max-width: 500px; width: 90%;">
+                <button class="modal-close" data-close="compare-modal">×</button>
+                <h3>So sánh bộ phối</h3>
+                <div id="compare-content" style="margin-top: 14px;"></div>
+            </div>
+        </div>
+
+        <!-- Modal Trợ lý AI -->
+        <div id="ai-modal" class="modal">
+            <div class="modal-content" style="max-width: 480px; width: 90%; height: 80vh; display: flex; flex-direction: column; text-align: left; padding: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 8px;">
+                    <h3 style="margin: 0; font-size: 16px;">✨ Trợ lý AI Việt phục</h3>
+                    <button class="modal-close" data-close="ai-modal" style="position: static; font-size: 20px;">×</button>
+                </div>
+
+                <!-- Cài đặt API Key -->
+                <div class="ai-key-box" style="margin-bottom: 10px; background: var(--bg-color); padding: 8px 12px; border-radius: 8px;">
+                    <div style="display: flex; gap: 6px; margin-bottom: 4px;">
+                        <input type="password" id="ai-key-input" placeholder="Dán Gemini API Key" style="flex: 1; padding: 6px 10px; font-size: 12px; border: 1px solid rgba(0,0,0,0.1); border-radius: 6px; outline: none;">
+                        <button id="ai-key-save" class="pill anim-btn" style="font-size: 11px; padding: 4px 10px; cursor: pointer;">Lưu</button>
+                        <button id="ai-key-clear" class="pill anim-btn" style="font-size: 11px; padding: 4px 10px; cursor: pointer; color: #c0392b;">Xóa</button>
+                    </div>
+                    <span style="font-size: 10px; color: var(--text-muted); display: block;">Key chỉ lưu an toàn trong trình duyệt này.</span>
+                </div>
+
+                <!-- Gợi ý nhanh -->
+                <div id="ai-quick" style="display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px;"></div>
+
+                <!-- Khung tin nhắn -->
+                <div id="ai-messages" style="flex: 1; overflow-y: auto; background: var(--bg-color); border-radius: 12px; padding: 12px; margin-bottom: 12px;"></div>
+
+                <!-- Form gửi tin nhắn -->
+                <form id="ai-form" style="display: flex; gap: 8px;">
+                    <input type="text" id="ai-input" placeholder="Hỏi AI về cổ phục, bối cảnh, phối màu..." style="flex: 1; padding: 10px 14px; font-size: 13px; border: 1px solid rgba(0,0,0,0.1); border-radius: 20px; outline: none;">
+                    <button type="submit" class="btn-primary anim-btn" style="padding: 10px 16px; border-radius: 20px;">Gửi</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- ==================== 7. CÁC PHẦN TỬ TOÀN CỤC ==================== -->
+        <!-- Nút nổi AI -->
+        <button id="ai-fab" class="ai-fab-btn anim-btn" title="Trợ lý AI Cổ phục">✨ AI</button>
+
+        <!-- Toast thông báo -->
+        <div id="toast" class="toast">Đã cập nhật!</div>
+
     </div>
+
+    <!-- ==================== 8. THƯ VIỆN & SCRIPTS (Đúng thứ tự nạp) ==================== -->
     <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="studio-data.js"></script>
+    <script src="studio.js"></script>
+    <script src="lookbook.js"></script>
+    <script src="ai.js"></script>
 </body>
 </html>
